@@ -20,6 +20,16 @@ public class Individual {
 	}
 	
 
+	public void setNumber() {
+		int cnt = 0;
+		for(int i = 0; i < ConstOfGA.NUMOFTERMINALS; i++) {
+			this.terminalStatus[i] = terminalStatus[i];
+			if(terminalStatus[i] == true) cnt++;
+		}
+		this.numOfTerminal = cnt;
+		this.numOfSteinerPoint = steinerPointStatus.size();
+	}
+
 	public int getNumOfTerminal() {
 		return numOfTerminal;
 	}

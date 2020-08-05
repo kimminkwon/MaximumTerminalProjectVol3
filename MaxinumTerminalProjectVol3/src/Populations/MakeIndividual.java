@@ -8,6 +8,7 @@ public class MakeIndividual {
 	private double IGP;
 	private double[] igpArr;
 	private boolean[] terminalStatus;
+	private int numOfTerminals;
 	private ArrayList<Point> steinerPointStatus;
 	
 	public MakeIndividual(double IGP, double[] igpArr) {
@@ -43,10 +44,12 @@ public class MakeIndividual {
 			terminalRand[i] = igpArr[cnt] * IGP;
 		}
 		
+		numOfTerminals = 0;
 		for(int i = 0; i < ConstOfGA.NUMOFTERMINALS; i++) {
 			double randValue = Math.random();
 			if(randValue < terminalRand[i]) {
 				terminalStatus[i] = true;
+				numOfTerminals++;
 			}
 		}
 		// System.out.println("terminalStatus: " + Arrays.toString(terminalStatus));
@@ -58,7 +61,7 @@ public class MakeIndividual {
 		ArrayList<Integer> hananV = InputDataProcess.getInputDataProcess().getHanan_vertical();
 		ArrayList<Integer> hananH = InputDataProcess.getInputDataProcess().getHanan_horizental();
 		
-		int limit = Math.max(0, makeRandom(ConstOfGA.NUMOFTERMINALS) - 1);
+		int limit = Math.max(0, makeRandom(numOfTerminals) - 1);
 		// System.out.println("터미널 개수보다 적은 난수(스타이너 포인트 개수): " + limit);
 		for(int i = 0; i < limit; i++) {
 			steinerPointStatus.add(new Point(hananV.get(makeRandom(hananV.size())), hananH.get(makeRandom(hananH.size()))));
