@@ -10,11 +10,13 @@ public class MakeIndividual {
 	private boolean[] terminalStatus;
 	private int numOfTerminals;
 	private ArrayList<Point> steinerPointStatus;
+	private Point[] terminals;
+	
 	
 	public MakeIndividual(double IGP, double[] igpArr) {
 		this.IGP = IGP;
 		this.igpArr = Arrays.copyOf(igpArr, igpArr.length);
-		
+		this.terminals = InputDataProcess.getInputDataProcess().getTerminals();
 		// System.out.println(Arrays.toString(this.igpArr));
 		makeTerminalStatus();
 		makeSteinerPointStatus();
@@ -62,9 +64,15 @@ public class MakeIndividual {
 		ArrayList<Integer> hananH = InputDataProcess.getInputDataProcess().getHanan_horizental();
 		
 		int limit = Math.max(0, makeRandom(numOfTerminals) - 1);
+		
 		// System.out.println("터미널 개수보다 적은 난수(스타이너 포인트 개수): " + limit);
-		for(int i = 0; i < limit; i++) {
-			steinerPointStatus.add(new Point(hananV.get(makeRandom(hananV.size())), hananH.get(makeRandom(hananH.size()))));
+		int cnt = 0;
+		while(cnt < limit) {
+			Point p = new Point(hananV.get(makeRandom(hananV.size())), hananH.get(makeRandom(hananH.size())));
+			if(isOverlap(p) == false) {
+				steinerPointStatus.add(p);	
+				cnt++;
+			}
 		}
 		/*
 		System.out.print("생성된 스타이너 포인트: ");
@@ -73,6 +81,22 @@ public class MakeIndividual {
 			System.out.print("(" + p.getX() + ", " + p.getY() + ") - ");
 		}
 		*/
+	}
+	
+	private boolean isOverlap(Point p1) {
+		boolean res = false;
+		for(int i = 0; i < terminals.length; i++) {
+			Point p2 = terminals[i];
+			if(p1.getX() == p2.getX() && p1.getY() == p2.getY()) {
+				res = true;
+			}
+		}
+		for(Point p2 : steinerPointStatus) {
+			if(p1.getX() == p2.getX() && p1.getY() == p2.getY()) {
+				res = true;
+			}
+		}
+		return res;
 	}
 	
 	private int makeRandom(int limit) {

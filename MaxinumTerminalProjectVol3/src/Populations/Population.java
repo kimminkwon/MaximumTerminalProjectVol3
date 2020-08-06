@@ -7,6 +7,7 @@ public class Population {
 	
 	public Population() {
 		this.population = new Individual[ConstOfGA.SIZEOFPOPULATION];
+		this.fitnessOfIndividual = new double[ConstOfGA.SIZEOFPOPULATION];
 	}
 	
 	public void setIndividual(int index, Individual individual, double fitness) {
@@ -17,4 +18,14 @@ public class Population {
 	public Individual getIndividual(int index) {
 		return population[index];
 	}
+
+	public double getFitnessOfIndividual(int index) {
+		return fitnessOfIndividual[index];
+	}
+
+	public void setFitnessOfIndividual(int index, double fitness) {
+		this.fitnessOfIndividual[index] = fitness;
+	}
+	
+	
 }

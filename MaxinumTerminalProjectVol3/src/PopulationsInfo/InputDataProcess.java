@@ -29,6 +29,10 @@ public class InputDataProcess {
 		return terminals[index];
 	}
 	
+	public Point[] getTerminals() {
+		return terminals;
+	}
+	
 	public ArrayList<Integer> getHanan_horizental() {
 		return hanan_horizental;
 	}

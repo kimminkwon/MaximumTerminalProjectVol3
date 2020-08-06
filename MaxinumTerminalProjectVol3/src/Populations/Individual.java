@@ -4,8 +4,11 @@ import java.util.*;
 public class Individual {
 	private boolean[] terminalStatus;
 	private ArrayList<Point> steinerPointStatus;
+	private ArrayList<Integer> steinerPointDegree;
 	private int numOfTerminal;
 	private int numOfSteinerPoint;
+	private int[] degreeOfSteinerPoint;
+	private int length;
 	
 	public Individual(boolean[] terminalStatus, ArrayList<Point> steinerPointStatus) {
 		this.terminalStatus = new boolean[ConstOfGA.NUMOFTERMINALS];
@@ -17,8 +20,8 @@ public class Individual {
 		this.numOfTerminal = cnt;
 		this.steinerPointStatus = steinerPointStatus;
 		this.numOfSteinerPoint = steinerPointStatus.size();
+		this.length = 0;
 	}
-	
 
 	public void setNumber() {
 		int cnt = 0;
@@ -62,11 +65,28 @@ public class Individual {
 		this.numOfSteinerPoint = steinerPointStatus.size();
 	}
 
+	public int[] getDegreeOfSteinerPoint() {
+		return degreeOfSteinerPoint;
+	}
+
+
+	public void setDegreeOfSteinerPoint(int[] degreeOfSteinerPoint) {
+		this.degreeOfSteinerPoint = degreeOfSteinerPoint;
+	}
+	
+	public int getLength() {
+		return length;
+	}
+
+
+	public void setLength(int length) {
+		this.length = length;
+	}
 
 	@Override
 	public String toString() {
 		return "  - terminalStatus=" + Arrays.toString(terminalStatus) + "\n    steinerPointStatus="
-				+ steinerPointStatus + "\n    numOfTerminal=" + numOfTerminal + ", numOfSteinerPoint=" + numOfSteinerPoint
-				+ "\n";
+				+ steinerPointStatus + "\n    numOfTerminal=" + numOfTerminal + ", numOfSteinerPoint=" + numOfSteinerPoint + ", length=" + length
+				+ "\n    degreeOfSteiner=" + Arrays.toString(degreeOfSteinerPoint);
 	}
 }

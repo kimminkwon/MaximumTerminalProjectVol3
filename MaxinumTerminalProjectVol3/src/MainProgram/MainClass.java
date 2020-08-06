@@ -3,6 +3,7 @@ package MainProgram;
 import Populations.*;
 import PopulationsInfo.*;
 import ControlOrLength.*;
+import GenenticAlgorithm.*;
 
 import java.util.*;
 import java.io.*;
@@ -45,17 +46,43 @@ public class MainClass {
 			individuals[i] = new Individual(makeIndividual.getTerminalStatus(), makeIndividual.getSteinerPointStatus());
 		}
 		
-		Population population = new Population();
-		System.out.println("* Populations Info...");
+		// 해 집단 확인
+		System.out.println("\n* Before adjust Populations Info...");
 		for(int i = 0; i < ConstOfGA.SIZEOFPOPULATION; i++) {
 			System.out.println(individuals[i]);
 		}
 		
-		CalFitness adj = new CalFitness(individuals[4], givenLength);
-		System.out.println("before Adjust Length: " + adj.getLength());
-		adj.adjustment();
+		// 해 집단 조정연산
+		Adjustment ad; 
+		CalLength cl;
+		for(int i = 0; i < ConstOfGA.SIZEOFPOPULATION; i++) {
+			ad = new Adjustment(individuals[i], givenLength);
+			ad.adjustment();
+			cl = new CalLength(individuals[i]);
+			individuals[i].setLength(cl.getLength());
+			// System.out.println(i + "-th Individual Length: " + cl.getLength());
+		}
 		
-		CalFitness cal = new CalFitness(individuals[4], givenLength);
-		System.out.println("Adjusted length: " + cal.getLength());
+		// 적합도 배열 생성
+		double[] fitnessArr = new double[ConstOfGA.SIZEOFPOPULATION];
+		CalFitness calFitness; 
+		for(int i = 0; i < ConstOfGA.SIZEOFPOPULATION; i++) {
+			calFitness = new CalFitness(individuals[i], givenLength);
+			fitnessArr[i] = calFitness.calFitness();
+		}
+
+		// 해집단에 저장
+		Population population = new Population();
+		for(int i = 0; i < ConstOfGA.SIZEOFPOPULATION; i++) {
+			population.setIndividual(i, individuals[i], fitnessArr[i]);
+		}
+		
+		System.out.println("\n* After adjust Populations Info...");
+		for(int i = 0; i < ConstOfGA.SIZEOFPOPULATION; i++) {
+			System.out.println(population.getIndividual(i));
+			System.out.print("    Fitness: " + population.getFitnessOfIndividual(i) + "\n");
+		}
+		
+		
 	}
 }
