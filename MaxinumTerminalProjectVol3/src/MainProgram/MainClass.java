@@ -26,6 +26,10 @@ public class MainClass {
 		
 		// 하난 그리드 생성
 		idp.makeHananGrid();
+		System.out.println("* HananGrid Info..");
+		System.out.println("  - Vertical: " + idp.getHanan_vertical());
+		System.out.println("  - Horizental: " + idp.getHanan_horizental());
+		
 		
 		// 초기 해 생성1. GivenLength 계산 후 IGP 얻기
 		GivenLength gl = new GivenLength();
@@ -83,6 +87,70 @@ public class MainClass {
 			System.out.print("    Fitness: " + population.getFitnessOfIndividual(i) + "\n");
 		}
 		
+		// GA1. Selection
+		int selectionNum1, selectionNum2;
+		
+		Selection s1 = new Selection(population, -1);
+		selectionNum1 = s1.selection();
+		Selection s2 = new Selection(population, selectionNum1);
+		selectionNum2 = s2.selection();
+
+		ParentIndividuals parentIndividuals = new ParentIndividuals(population.getIndividual(selectionNum1), population.getIndividual(selectionNum2), population.getFitnessOfIndividual(selectionNum1), population.getFitnessOfIndividual(selectionNum2));
+		
+		System.out.println("\n* GA-1: Selection");
+		System.out.println("  - Selected Index: " + selectionNum1 + ", " + selectionNum2);
+		System.out.println(parentIndividuals.getParentIndividualOne());
+		System.out.println(parentIndividuals.getParentIndividualTwo());
+		
+		// GA2. CrossOver
+		Crossover crossover = new Crossover(parentIndividuals);
+		crossover.crossover();
+		
+		Individual[] childIndividuals = new Individual[4];
+		childIndividuals[0] = crossover.getChildIndividualOne();
+		childIndividuals[1] = crossover.getChildIndividualTwo();
+		childIndividuals[2] = crossover.getChildIndividualThree();
+		childIndividuals[3] = crossover.getChildIndividualFour();
+		
+		double[] childFitnessArr = new double[4];
+		
+		System.out.println("\n* GA-2: CrossOver");
+		System.out.println("\n* Before adjustment CrossOver");
+		System.out.println("  - ChildIndividualOne...");
+		System.out.println(childIndividuals[0]);
+		System.out.println("  - ChildIndividualTwo...");
+		System.out.println(childIndividuals[1]);
+		System.out.println("  - ChildIndividualThree...");
+		System.out.println(childIndividuals[2]);
+		System.out.println("  - ChildIndividualFour...");
+		System.out.println(childIndividuals[3]);
+		
+		for(int i = 0; i < 4; i++) {
+			ad = new Adjustment(childIndividuals[i], givenLength);
+			ad.adjustment();
+			cl = new CalLength(childIndividuals[i]);
+			childIndividuals[i].setLength(cl.getLength());
+			calFitness = new CalFitness(childIndividuals[i], givenLength);
+			childFitnessArr[i] = calFitness.calFitness();
+		}
+		
+
+		System.out.println("\n* After adjustment CrossOver");
+		System.out.println("  - ChildIndividualOne...");
+		System.out.println(childIndividuals[0]);
+		System.out.print("    Fitness: " + childFitnessArr[0] + "\n");
+		
+		System.out.println("  - ChildIndividualTwo...");
+		System.out.println(childIndividuals[1]);
+		System.out.print("    Fitness: " + childFitnessArr[1] + "\n");
+		
+		System.out.println("  - ChildIndividualThree...");
+		System.out.println(childIndividuals[2]);
+		System.out.print("    Fitness: " + childFitnessArr[2] + "\n");
+		
+		System.out.println("  - ChildIndividualFour...");
+		System.out.println(childIndividuals[3]);
+		System.out.print("    Fitness: " + childFitnessArr[3] + "\n");
 		
 	}
 }

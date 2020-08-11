@@ -22,6 +22,10 @@ public class Population {
 	public double getFitnessOfIndividual(int index) {
 		return fitnessOfIndividual[index];
 	}
+	
+	public double[] getFitnessOfIndividual() {
+		return fitnessOfIndividual;
+	}
 
 	public void setFitnessOfIndividual(int index, double fitness) {
 		this.fitnessOfIndividual[index] = fitness;

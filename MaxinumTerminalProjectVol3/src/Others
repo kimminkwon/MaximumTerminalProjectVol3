@@ -1,6 +1,6 @@
 <예시 인풋>
 
-# of Terminai = 9;
+# of Terminai = 20;
 
 4 4
 4 5
@@ -9,10 +9,25 @@
 9 10
 9 12
 13 8
-11 5
-11 4
+19 20
+20 1
+1 15
+9 16
+14 11
+11 11
+15 16
+4 15
+5 17
+17 10
+9 20
+19 19
+18 20
 
 <현재 진행상황>
+교차연산 후 조정 연산까지 적용
 
-초기해 생성 작성 완료
-이제 GA 연산 적용해야 됨
+<해결해야 할 오류>
+- 선택연산 시 선택되는 2개 인덱스가 중복이 발생함, 한번 발생하면 계속 중복되어 while문을 빠져나오지 못하는 오류 존재
+- 교차 후 조정 연산 시, NullPointException이 Adjustment의 "this.dist = ud.preprocessingDist();" 
+				-> UsingDistance의 preprocessingDist()의 "int d = getDist(totalTerminals[i], totalTerminals[j]);" 
+				-> UsingDistance의 getDist()의 "int x_dist = Math.abs(p1.getX() - p2.getX());"에서 발생

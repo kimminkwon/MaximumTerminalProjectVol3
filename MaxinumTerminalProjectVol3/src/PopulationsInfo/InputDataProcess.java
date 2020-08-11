@@ -56,10 +56,5 @@ public class InputDataProcess {
 		
 		Collections.sort(hanan_horizental);
 		Collections.sort(hanan_vertical);
-
-		System.out.println("* HananGrid Info..");
-		System.out.println("  - Vertical: " + hanan_vertical);
-		System.out.println("  - Horizental: " + hanan_horizental);
-		
 	}
 }
