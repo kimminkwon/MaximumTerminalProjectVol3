@@ -85,8 +85,8 @@ public class Individual {
 
 	@Override
 	public String toString() {
-		return "  - terminalStatus=" + Arrays.toString(terminalStatus) + "\n    steinerPointStatus="
-				+ steinerPointStatus + "\n    numOfTerminal=" + numOfTerminal + ", numOfSteinerPoint=" + numOfSteinerPoint + ", length=" + length
+		return "  - terminalStatus=" + Arrays.toString(this.terminalStatus) + "\n    steinerPointStatus="
+				+ this.steinerPointStatus + "\n    numOfTerminal=" + numOfTerminal + ", numOfSteinerPoint=" + numOfSteinerPoint + ", length=" + length
 				+ "\n    degreeOfSteiner=" + Arrays.toString(degreeOfSteinerPoint);
 	}
 }

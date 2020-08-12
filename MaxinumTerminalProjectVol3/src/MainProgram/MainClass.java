@@ -126,6 +126,7 @@ public class MainClass {
 		System.out.println(childIndividuals[3]);
 		
 		for(int i = 0; i < 4; i++) {
+			// System.out.println("조정연산시작" + i);
 			ad = new Adjustment(childIndividuals[i], givenLength);
 			ad.adjustment();
 			cl = new CalLength(childIndividuals[i]);
@@ -133,7 +134,6 @@ public class MainClass {
 			calFitness = new CalFitness(childIndividuals[i], givenLength);
 			childFitnessArr[i] = calFitness.calFitness();
 		}
-		
 
 		System.out.println("\n* After adjustment CrossOver");
 		System.out.println("  - ChildIndividualOne...");

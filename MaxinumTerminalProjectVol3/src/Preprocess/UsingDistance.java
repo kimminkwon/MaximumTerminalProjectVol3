@@ -16,6 +16,7 @@ public class UsingDistance {
 		
 		for(int i = 0; i < totalTerminals.length; i++) {
 			for(int j = i; j < totalTerminals.length; j++) {
+				// System.out.println(i + "에서" + j + "까지");
 				int d = getDist(totalTerminals[i], totalTerminals[j]);
 				dist[i][j] = d;
 				dist[j][i] = d;

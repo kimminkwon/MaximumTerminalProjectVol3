@@ -7,7 +7,7 @@ import java.io.*;
 
 public class GivenLength {
 	private double IGP;
-	private int totalLength;
+	private double totalLength;
 	private int givenLength;
 	private int[][] dist;
 	private Point[] terminalArr;
@@ -20,8 +20,8 @@ public class GivenLength {
 			terminalArr[i] = idp.getTerminalCoor(i);
 		}
 		preprocessingDist();
-		totalLength = calGivenLength();
-		givenLength = (int) (totalLength * ConstOfGA.GIVENLENGTHVALUE);
+		totalLength = (0.6666666666666667) * (double)calGivenLength();
+		givenLength = (int) (totalLength * (double)ConstOfGA.GIVENLENGTHVALUE);
 		
 		setIGP();
 	}
@@ -30,7 +30,7 @@ public class GivenLength {
 		return givenLength;
 	}
 	
-	public int getTotalLength() {
+	public double getTotalLength() {
 		return totalLength;
 	}
 

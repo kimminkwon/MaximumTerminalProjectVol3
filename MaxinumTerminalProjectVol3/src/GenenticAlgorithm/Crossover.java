@@ -60,10 +60,11 @@ public class Crossover {
 			terminalRL[i] = parentIndividualOne.getTerminalStatus()[i];
 		}
 		
-		System.out.println("TerminalDivisionPoint: " + divisionPoint);
-		System.out.println("terminalLR: " + Arrays.toString(terminalLR));
-		System.out.println("terminalRL: " + Arrays.toString(terminalRL));
-		
+		/*
+		 * System.out.println("TerminalDivisionPoint: " + divisionPoint);
+		 * System.out.println("terminalLR: " + Arrays.toString(terminalLR));
+		 * System.out.println("terminalRL: " + Arrays.toString(terminalRL));
+		 */
 		ArrayList<Point> steinerPointStatusLR = new ArrayList<>();
 		ArrayList<Point> steinerPointStatusRL = new ArrayList<>();
 		
@@ -83,18 +84,20 @@ public class Crossover {
 			steinerPointStatusRL.add(parentIndividualOne.getSteinerPointStatus().get(i));
 		}
 		
-		System.out.println("SteinerDivisionPoint: " + divisionPoint);
-		System.out.println("steinerPointStatusLR: " + steinerPointStatusLR);
-		System.out.println("steinerPointStatusRL: " + steinerPointStatusRL);
+		/*
+		 * System.out.println("SteinerDivisionPoint: " + divisionPoint);
+		 * System.out.println("steinerPointStatusLR: " + steinerPointStatusLR);
+		 * System.out.println("steinerPointStatusRL: " + steinerPointStatusRL);
+		 */
 		
 		makeIndividual(terminalLR, terminalRL, steinerPointStatusLR, steinerPointStatusRL);
 	}
 	
 	private void makeIndividual(boolean[] terminalLR, boolean[] terminalRL, ArrayList<Point> steinerPointStatusLR, ArrayList<Point> steinerPointStatusRL) {
-		childIndividualOne = new Individual(terminalLR, steinerPointStatusLR);
-		childIndividualTwo = new Individual(terminalLR, steinerPointStatusRL);
-		childIndividualThree = new Individual(terminalRL, steinerPointStatusLR);
-		childIndividualFour = new Individual(terminalRL, steinerPointStatusRL);
+		childIndividualOne = new Individual(terminalLR.clone(), new ArrayList<Point>(steinerPointStatusLR));
+		childIndividualTwo = new Individual(terminalLR.clone(), new ArrayList<Point>(steinerPointStatusRL));
+		childIndividualThree = new Individual(terminalRL.clone(), new ArrayList<Point>(steinerPointStatusLR));
+		childIndividualFour = new Individual(terminalRL.clone(), new ArrayList<Point>(steinerPointStatusRL));
 	}
 	
 	private int makeRandom(int limit) {

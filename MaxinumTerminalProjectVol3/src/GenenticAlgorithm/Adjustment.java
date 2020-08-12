@@ -31,11 +31,13 @@ public class Adjustment {
 				cnt++;
 			}
 		}
+		// System.out.println("steinerBox: " + steinerBox);
 		for(Point p : steinerBox) {
+			// System.out.println(p + "를 저장");
 			totalTerminals[cnt] = p;
 			cnt++;
 		}
-		// System.out.println(Arrays.toString(totalTerminals));
+		// System.out.println("완성된 TotalTermianls = " + Arrays.toString(totalTerminals));
 	}
 	
 	public void adjustment() {

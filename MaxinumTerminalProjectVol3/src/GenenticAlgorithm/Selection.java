@@ -21,10 +21,9 @@ public class Selection {
 		Individual selectedIndividual = null;
 		int choiceIndividual = 0;
 		double sumOfRouletteValues = setRouletteValues();
-		System.out.println("RouletteValues: " + Arrays.toString(rouletteValues));
-		double rand = makeRandom(sumOfRouletteValues);
+		// System.out.println("RouletteValues: " + Arrays.toString(rouletteValues));
 		while(true) {
-			choiceIndividual = choiceIndividual(rand);
+			choiceIndividual = choiceIndividual(makeRandom(sumOfRouletteValues));
 			if(isOverlap != choiceIndividual)
 				break;
 			System.out.println("중복 발생!!");

@@ -25,9 +25,17 @@
 
 <현재 진행상황>
 교차연산 후 조정 연산까지 적용
+GivenLength 계산시 Total Length에 2/3 곱하기 적용
 
 <해결해야 할 오류>
-- 선택연산 시 선택되는 2개 인덱스가 중복이 발생함, 한번 발생하면 계속 중복되어 while문을 빠져나오지 못하는 오류 존재
-- 교차 후 조정 연산 시, NullPointException이 Adjustment의 "this.dist = ud.preprocessingDist();" 
+
+<디버깅된 오류>
+
+ - 선택연산 시 선택되는 2개 인덱스가 중복이 발생함, 한번 발생하면 계속 중복되어 while문을 빠져나오지 못하는 오류 존재
+ 	==> 난수 발생을 while문 바깥에 두고 같은 난수로 계속 선택을 돌렸음 멍청쓰
+ 	
+ - 교차 후 조정 연산 시, NullPointException이 Adjustment의 "this.dist = ud.preprocessingDist();" 
 				-> UsingDistance의 preprocessingDist()의 "int d = getDist(totalTerminals[i], totalTerminals[j]);" 
 				-> UsingDistance의 getDist()의 "int x_dist = Math.abs(p1.getX() - p2.getX());"에서 발생
+ 	이는 이전에 조정한 해에서 스타이너 포인트가 삭제되었을 때 주소 공유식으로 자식해가 생성되어 발생된다!
+	==> clone과 new ArrayList로 생성하여 해결
