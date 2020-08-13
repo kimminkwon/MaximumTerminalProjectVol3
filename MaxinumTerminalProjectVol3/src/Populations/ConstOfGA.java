@@ -1,11 +1,16 @@
 package Populations;
 
 public class ConstOfGA {
-	public final static int NUMOFTERMINALS = 20;
-	public final static int SIZEOFPOPULATION = 5;
-	public final static double GIVENLENGTHVALUE = 0.5;
-	public final static double SCALROFIGP = 1.0;
-	public final static double ALPHA = 0.2;
-	public final static double BETA = 0.7;
-	public final static double GAMMA = 0.1;
+	public static final int NUMOFTERMINALS = 20;
+	public static final int SIZEOFPOPULATION = 5;
+	public static final double GIVENLENGTHVALUE = 0.5;
+	public static final double SCALROFIGP = 1.0;
+	public static final double ALPHA = 0.2;
+	public static final double BETA = 0.7;
+	public static final double GAMMA = 0.1;
+	public static final double MUTATIONPORB_TERMINAL = 0.5;
+	public static final double MUTATIONPORB_STEINER = 0.5;
+	public static final int NUMOFMUATATION_TERMINAL = 3;
+	public static final int NUMOFMUATATION_STEINER = 2;
+	public static final double PROBSTEINERDELETE = 0.5;
 }

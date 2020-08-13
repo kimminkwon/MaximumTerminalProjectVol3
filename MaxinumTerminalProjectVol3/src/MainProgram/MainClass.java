@@ -115,7 +115,6 @@ public class MainClass {
 		double[] childFitnessArr = new double[4];
 		
 		System.out.println("\n* GA-2: CrossOver");
-		System.out.println("\n* Before adjustment CrossOver");
 		System.out.println("  - ChildIndividualOne...");
 		System.out.println(childIndividuals[0]);
 		System.out.println("  - ChildIndividualTwo...");
@@ -124,6 +123,26 @@ public class MainClass {
 		System.out.println(childIndividuals[2]);
 		System.out.println("  - ChildIndividualFour...");
 		System.out.println(childIndividuals[3]);
+		
+		// GA3. Mutation
+		
+		Mutation mutation;
+		for(int i = 0; i < 4; i++) {
+			mutation = new Mutation(childIndividuals[i]);
+			mutation.mutation();
+		}
+		
+		System.out.println("\n* GA-3: Mutation");
+		System.out.println("  - ChildIndividualOne...");
+		System.out.println(childIndividuals[0]);
+		System.out.println("  - ChildIndividualTwo...");
+		System.out.println(childIndividuals[1]);
+		System.out.println("  - ChildIndividualThree...");
+		System.out.println(childIndividuals[2]);
+		System.out.println("  - ChildIndividualFour...");
+		System.out.println(childIndividuals[3]);
+	
+		// GA4. Adjustment
 		
 		for(int i = 0; i < 4; i++) {
 			// System.out.println("조정연산시작" + i);
@@ -152,5 +171,8 @@ public class MainClass {
 		System.out.println(childIndividuals[3]);
 		System.out.print("    Fitness: " + childFitnessArr[3] + "\n");
 		
+		// GA5. Local Search
+		LocalSearch localSearch = new LocalSearch(childIndividuals[3], givenLength);
+		localSearch.localSearch();
 	}
 }

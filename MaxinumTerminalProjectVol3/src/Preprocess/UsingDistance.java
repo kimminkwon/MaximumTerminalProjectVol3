@@ -1,5 +1,7 @@
 package Preprocess;
 
+import java.util.ArrayList;
+
 import Populations.Point;
 
 public class UsingDistance {
@@ -9,6 +11,13 @@ public class UsingDistance {
 	 
 	public UsingDistance(Point[] totalTerminals) {
 		this.totalTerminals = totalTerminals;
+	}
+	
+	public UsingDistance(ArrayList<Point> totalTerminals) {
+		this.totalTerminals = new Point[totalTerminals.size()];
+		for(int i = 0; i < totalTerminals.size(); i++) {
+			this.totalTerminals[i] = totalTerminals.get(i);
+		}
 	}
 
 	public int[][] preprocessingDist() {
