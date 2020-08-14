@@ -13,4 +13,5 @@ public class ConstOfGA {
 	public static final int NUMOFMUATATION_TERMINAL = 3;
 	public static final int NUMOFMUATATION_STEINER = 2;
 	public static final double PROBSTEINERDELETE = 0.5;
+	public static final double PROBSTEINERADD = 1.0;
 }
