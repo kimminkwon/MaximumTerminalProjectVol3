@@ -171,8 +171,16 @@ public class MainClass {
 		System.out.println(childIndividuals[3]);
 		System.out.print("    Fitness: " + childFitnessArr[3] + "\n");
 		
-		// GA5. Local Search
-		LocalSearch localSearch = new LocalSearch(childIndividuals[3], givenLength);
-		localSearch.localSearch();
+		// GA5. Local Search: Steiner
+		LocalSearch_Steiner localSearch_Steiner = new LocalSearch_Steiner(childIndividuals[3], givenLength);
+		localSearch_Steiner.localSearch();
+		
+		System.out.println("  - ChildIndividualFour...");
+		System.out.println(childIndividuals[3]);
+		
+		// GA5. Local Search: Terminal
+		LocalSearch_Terminal localSearch_Terminal = new LocalSearch_Terminal(childIndividuals[3], givenLength);
+		localSearch_Terminal.localSearch();
+				
 	}
 }

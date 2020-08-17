@@ -11,24 +11,16 @@ import PopulationsInfo.CalLength;
 import PopulationsInfo.InputDataProcess;
 import Preprocess.UsingDistance;
 
-public class LocalSearch {
-	private double totalLength;
-	private int givenLength;
-	private int[][] dist;
+public class LocalSearch_Steiner {
 	private ArrayList<Point> totalTerminals;
 	private InputDataProcess idp = null;
 	private Individual calIndividual;
-	private CalLength calLength;
-	private boolean[] terminalbox;
 	private int[] terminalNumHash;
 	
-	public LocalSearch(Individual individual, int givenLength) {
-		this.givenLength = givenLength;
+	public LocalSearch_Steiner(Individual individual, int givenLength) {
 		this.calIndividual = individual;
 		this.idp = InputDataProcess.getInputDataProcess();
-		this.dist = new int[ConstOfGA.NUMOFTERMINALS + calIndividual.getNumOfSteinerPoint()][ConstOfGA.NUMOFTERMINALS + calIndividual.getNumOfSteinerPoint()];
 		this.terminalNumHash = new int[ConstOfGA.NUMOFTERMINALS];
-		
 		
 		// 합친 터미널 집합 만들기
 		totalTerminals = new ArrayList<Point>();
@@ -50,16 +42,23 @@ public class LocalSearch {
 		
 		steinerAdd(cntOfNewSteiner);
 		System.out.println("add 연산 후 totalTerminals: " + totalTerminals);
-		// UsingDistance usingDist = new UsingDistance(totalTerminals);
-		// this.dist = usingDist.preprocessingDist();
-		
+		setModifyIndividual();
 	}
 	
+	private void setModifyIndividual() {
+		ArrayList<Point> box = new ArrayList<Point>();
+		for(int i = ConstOfGA.NUMOFTERMINALS; i < totalTerminals.size(); i++) {
+			box.add(new Point(totalTerminals.get(i).getX(), totalTerminals.get(i).getY()));
+		}
+		System.out.println("새로운 SteinerList = " + box);
+		
+		calIndividual.setSteinerPointStatus(box);
+	}
+	
+	// Part1. Steiner Point Operation
 	private int steinerDelete() {
 		int cntOfNewSteiner = 0;
-		int cnt = 0;
 		int cntDegree = calIndividual.getNumOfTerminal();
-		Iterator<Point> iter = totalTerminals.iterator();
 		for(int i = 0; i < totalTerminals.size(); i++) {
 			if(i >= ConstOfGA.NUMOFTERMINALS) {
 				int degree = calIndividual.getDegreeOfSteinerPoint()[cntDegree];
@@ -106,6 +105,7 @@ public class LocalSearch {
 			Point p = terminalArr[r];
 			
 			Point newSteinerPoint = closedPairPoint(r, p, terminalArr);
+	
 			if(newSteinerPoint != null) {
 				totalTerminals.add(newSteinerPoint);
 			}
@@ -150,7 +150,11 @@ public class LocalSearch {
 		
 		boolean comparedRes = false;
 		for(int i = 0; i < pointPair.length; i++) {
-			comparedRes = comparePoint(newSteinerPoint, pointPair[i]);
+			if(comparePoint(newSteinerPoint, pointPair[i]) == true) {
+				System.out.println(newSteinerPoint + "는 해당 3쌍과 겹친다.");
+				comparedRes = true;
+				break;
+			}
 		}
 		
 		if(comparedRes == true) {
