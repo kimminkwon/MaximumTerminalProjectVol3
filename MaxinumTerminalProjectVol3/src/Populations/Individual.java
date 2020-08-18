@@ -89,4 +89,5 @@ public class Individual {
 				+ this.steinerPointStatus + "\n    numOfTerminal=" + numOfTerminal + ", numOfSteinerPoint=" + numOfSteinerPoint + ", length=" + length
 				+ "\n    degreeOfSteiner=" + Arrays.toString(degreeOfSteinerPoint);
 	}
+
 }

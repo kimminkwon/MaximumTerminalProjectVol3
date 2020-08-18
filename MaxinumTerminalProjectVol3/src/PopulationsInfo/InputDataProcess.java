@@ -57,4 +57,24 @@ public class InputDataProcess {
 		Collections.sort(hanan_horizental);
 		Collections.sort(hanan_vertical);
 	}
+	
+	public boolean isSteinerOverlap(Point steinerPoint) {
+		boolean res = false;
+		for(int i = 0; i < terminals.length; i++) {
+			if(comparePoint(steinerPoint, terminals[i]) == true) {
+				res = true;
+			}
+		}
+		return res;
+	}
+	
+	private boolean comparePoint(Point p1, Point p2) {
+		boolean res = false;
+		
+		if(p1.getX() == p2.getX() && p1.getY() == p2.getY()) {
+			res = true;
+		}
+		
+		return res;
+	}
 }
