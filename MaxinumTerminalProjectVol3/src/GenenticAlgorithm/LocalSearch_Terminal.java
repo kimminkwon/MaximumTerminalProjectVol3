@@ -38,26 +38,57 @@ public class LocalSearch_Terminal {
 		
 		int res = 0;
 		
-		System.out.println(Arrays.toString(totalTerminals));
+		//System.out.println(Arrays.toString(totalTerminals));
 		res = localSearchPartOne(selected, minDist, startTerminals);
 		
-		System.out.println("selected 배열" + Arrays.toString(selected));
-		System.out.println("startTerminals 배열" + Arrays.toString(startTerminals));
-		System.out.println("minDist 배열" + Arrays.toString(minDist));
-		System.out.println("Degree배열" + Arrays.toString(degree));
+//		System.out.println("selected 배열" + Arrays.toString(selected));
+//		System.out.println("startTerminals 배열" + Arrays.toString(startTerminals));
+//		System.out.println("minDist 배열" + Arrays.toString(minDist));
+//		System.out.println("Degree배열" + Arrays.toString(degree));
 		
 		ArrayList<Point> SteinerFlag = new ArrayList<Point>();
 		res = localSearchPartTwo(selected, minDist, startTerminals, res, SteinerFlag);
-		System.out.println("최종 res = " + res + ", 추가할 스타이너포인트의 기준: " + SteinerFlag);
-		
-		steinerAdd(SteinerFlag, selected);
-		System.out.println("totalTerminal After Steiner Add : " + Arrays.toString(totalTerminalsPlusSteiner));
-		
+//		System.out.println("최종 res = " + res + ", 추가할 스타이너포인트의 기준: " + SteinerFlag);
+	
+		ArrayList<Point> newSteinerPoints = steinerAdd(SteinerFlag, selected);
+//		System.out.println("newSteinerPoints : " + newSteinerPoints);
+	
+		makeNewIndividual(selected, newSteinerPoints);
+		CalLength calLength = new CalLength(calIndividual);
+		int length = calLength.getLength();
+		calIndividual.setLength(length);
+//		System.out.println("==============최종 형태=============");
+//		System.out.println(calIndividual);
+//		System.out.println("length: " + length);
 	}
 	
+	// Part4. 토탈 터미널을 해로 변환한다.
+	private void makeNewIndividual(boolean[] selected, ArrayList<Point> newSteinerPoints) {
+		boolean[] terminalStatus = new boolean[totalTerminals.length + newSteinerPoints.size()];
+		ArrayList<Point> steinerPointStatus = new ArrayList<Point>();
+		
+		int cnt = 0;
+		// 1. 터미널 복사
+		for(int i = 0; i < ConstOfGA.NUMOFTERMINALS; i++) {
+			terminalStatus[i] = selected[i];
+			cnt++;
+		}
+		// 2. 기존 스타이너 포인트 추가
+		for(int i = ConstOfGA.NUMOFTERMINALS; i < totalTerminals.length ; i++) {
+			steinerPointStatus.add(totalTerminals[i]);
+			cnt++;
+		}
+		// 3. 새로운 스타이너 포인트 추가
+		for(Point p : newSteinerPoints) {
+			steinerPointStatus.add(new Point(p.getX(), p.getY()));
+		}
+		
+		calIndividual.setTerminalStatus(terminalStatus);
+		calIndividual.setSteinerPointStatus(steinerPointStatus);	
+	}
 	
 	// Part3. Steiner Point를 다시 추가한다.
-	private void steinerAdd(ArrayList<Point> SteinerFlag, boolean[] selected) {
+	private ArrayList<Point> steinerAdd(ArrayList<Point> SteinerFlag, boolean[] selected) {
 		ArrayList<Point> newSteinerPoints = new ArrayList<Point>();
 		int numOfSelectedTerminal = 0;
 		
@@ -86,17 +117,19 @@ public class LocalSearch_Terminal {
 			}
 		}
 		
-		this.totalTerminalsPlusSteiner = new Point[totalTerminals.length + newSteinerPoints.size()];
-		int cnt = 0;
-		for(int i = 0; i < totalTerminals.length; i++) {
-			totalTerminalsPlusSteiner[cnt] = totalTerminals[i];
-			cnt++;
-		}
+		return newSteinerPoints;
 		
-		for(Point p : newSteinerPoints) {
-			totalTerminalsPlusSteiner[cnt] = p;
-			cnt++;
-		}
+//		this.totalTerminalsPlusSteiner = new Point[totalTerminals.length + newSteinerPoints.size()];
+//		int cnt = 0;
+//		for(int i = 0; i < totalTerminals.length; i++) {
+//			totalTerminalsPlusSteiner[cnt] = totalTerminals[i];
+//			cnt++;
+//		}
+//		
+//		for(Point p : newSteinerPoints) {
+//			totalTerminalsPlusSteiner[cnt] = p;
+//			cnt++;
+//		}
 	}
 	
 	private Point closedPairPoint(Point[] selectedTerminals, Point flagPoint) {
@@ -113,9 +146,9 @@ public class LocalSearch_Terminal {
 				minDistIndex = i;
 			}
 		}
-		System.out.println("기준 Point: " + flagPoint);
-		System.out.println("1번쨰 Pair [ index = " + minDistIndex + ", minDist = " + minDist + ", Point = " + selectedTerminals[minDistIndex]);
-		
+//		System.out.println("기준 Point: " + flagPoint);
+//		System.out.println("1번쨰 Pair [ index = " + minDistIndex + ", minDist = " + minDist + ", Point = " + selectedTerminals[minDistIndex]);
+//		
 		minDist = Integer.MAX_VALUE;
 		int minDistIndexTwo = 0;
 		
@@ -127,20 +160,20 @@ public class LocalSearch_Terminal {
 			}
 		}
 		
-		System.out.println("2번쨰 Pair [ index = " + minDistIndexTwo + ", minDist = " + minDist + ", Point = " + selectedTerminals[minDistIndexTwo]);
+//		System.out.println("2번쨰 Pair [ index = " + minDistIndexTwo + ", minDist = " + minDist + ", Point = " + selectedTerminals[minDistIndexTwo]);
 		
 		
 		pointPair[1] = selectedTerminals[minDistIndex];
 		pointPair[2] = selectedTerminals[minDistIndexTwo];
 		
-		System.out.println(Arrays.toString(pointPair));
+//		System.out.println(Arrays.toString(pointPair));
 		
 		Point newSteinerPoint = middlePoint(pointPair);
 		
 		boolean comparedRes = false;
 		for(int i = 0; i < pointPair.length; i++) {
 			if(idp.isSteinerOverlap(newSteinerPoint) == true) {
-				System.out.println(newSteinerPoint + "는 터미널과 겹친다.");
+//				System.out.println(newSteinerPoint + "는 터미널과 겹친다.");
 				comparedRes = true;
 				break;
 			}
@@ -155,12 +188,12 @@ public class LocalSearch_Terminal {
 	
 	// Part2, 4. 추가적인 연결을 만든다. 이때 일정 확률로 추가할 스타이너 포인트의 개수를 증가시킨다.
 	private int localSearchPartTwo(boolean[] selected, int[] minDist, int[] startTerminals, int res, ArrayList<Point> SteinerFlag) {
-		System.out.println("PART 2!!");
+//		System.out.println("PART 2!!");
 		while(true) {
-			System.out.println("selected 배열" + Arrays.toString(selected));
-			System.out.println("startTerminals 배열" + Arrays.toString(startTerminals));
-			System.out.println("minDist 배열" + Arrays.toString(minDist));
-			System.out.println("Degree배열" + Arrays.toString(degree));
+//			System.out.println("selected 배열" + Arrays.toString(selected));
+//			System.out.println("startTerminals 배열" + Arrays.toString(startTerminals));
+//			System.out.println("minDist 배열" + Arrays.toString(minDist));
+//			System.out.println("Degree 배열" + Arrays.toString(degree));
 			
 			// 가장 가까운 터미널 선택
 			int min = Integer.MAX_VALUE;
@@ -175,11 +208,11 @@ public class LocalSearch_Terminal {
 			selected[selectedIndex] = true;		
 			int resbox = calculateIndividualLength(selected);
 			
-			System.out.print(selectedIndex + ", " + res + " --> \n");
+			// System.out.print(selectedIndex + ", " + res + " --> \n");
 			
 			// 거리 값 업데이트
 			if(resbox >= givenLength) {
-				System.out.println("거리값 초과!");
+				// System.out.println("거리값 초과!");
 				selected[selectedIndex] = false;
 				break;
 			}
@@ -199,10 +232,10 @@ public class LocalSearch_Terminal {
 			}
 		}
 		
-		System.out.println("selected 배열" + Arrays.toString(selected));
-		System.out.println("startTerminals 배열" + Arrays.toString(startTerminals));
-		System.out.println("minDist 배열" + Arrays.toString(minDist));
-		System.out.println("Degree배열" + Arrays.toString(degree));
+//		System.out.println("selected 배열" + Arrays.toString(selected));
+//		System.out.println("startTerminals 배열" + Arrays.toString(startTerminals));
+//		System.out.println("minDist 배열" + Arrays.toString(minDist));
+//		System.out.println("Degree배열" + Arrays.toString(degree));
 		
 		return res;
 	}
@@ -227,7 +260,7 @@ public class LocalSearch_Terminal {
 		boolean[] possible = makePossibleArr();
 		
 		int selectedIndex = selectedTrueIndex();
-		System.out.print("Started Index: " + selectedIndex + ", 0 -->");
+		// System.out.print("Started Index: " + selectedIndex + ", 0 -->");
 		selected[selectedIndex] = true;
 		
 		int length = calIndividual.getNumOfSteinerPoint() + calIndividual.getNumOfTerminal();
@@ -245,10 +278,10 @@ public class LocalSearch_Terminal {
 				}
 			}
 			
-			System.out.println("selected 배열" + Arrays.toString(selected));
-			System.out.println("startTerminals 배열" + Arrays.toString(startTerminals));
-			System.out.println("minDist 배열" + Arrays.toString(minDist));
-			System.out.println("Degree배열" + Arrays.toString(degree));
+//			System.out.println("selected 배열" + Arrays.toString(selected));
+//			System.out.println("startTerminals 배열" + Arrays.toString(startTerminals));
+//			System.out.println("minDist 배열" + Arrays.toString(minDist));
+//			System.out.println("Degree배열" + Arrays.toString(degree));
 
 			// 가장 가까운 터미널 선택
 			int min = Integer.MAX_VALUE;
@@ -261,7 +294,7 @@ public class LocalSearch_Terminal {
 			
 			// 거리 값 업데이트
 			if(res + min > givenLength) {
-				System.out.println(selectedIndex + ", " + (res+min) + "로 길이 초과 발생");
+				// System.out.println(selectedIndex + ", " + (res+min) + "로 길이 초과 발생");
 				break;
 			}
 			
@@ -275,7 +308,7 @@ public class LocalSearch_Terminal {
 			
 			res = res + min;
 			selected[selectedIndex] = true;		
-			System.out.print(selectedIndex + ", " + res + " --> \n");
+			//System.out.print(selectedIndex + ", " + res + " --> \n");
 		}
 		
 		// 마지막 선택에 대한 거리 값 업데이트

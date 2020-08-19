@@ -5,17 +5,21 @@ import Populations.*;
 public class ParentIndividuals {
 	private Individual parentIndividualOne;
 	private Individual parentIndividualTwo;
-	private double fitnessOfChildOne;
-	private double fitnessOfChildTwo;
-	
+	private int indexOfparentIndividualOne;
+	private int indexOfparentIndividualTwo;
+	private double fitnessOfParentOne;
+	private double fitnessOfParnetTwo;
 	
 
-	public ParentIndividuals(Individual parentIndividualOne, Individual parentIndividualTwo, double fitnessOfChildOne,
-			double fitnessOfChildTwo) {
+	public ParentIndividuals(Individual parentIndividualOne, Individual parentIndividualTwo,
+			int indexOfparentIndividualOne, int indexOfparentIndividualTwo, double fitnessOfParentOne,
+			double fitnessOfParnetTwo) {
 		this.parentIndividualOne = parentIndividualOne;
 		this.parentIndividualTwo = parentIndividualTwo;
-		this.fitnessOfChildOne = fitnessOfChildOne;
-		this.fitnessOfChildTwo = fitnessOfChildTwo;
+		this.indexOfparentIndividualOne = indexOfparentIndividualOne;
+		this.indexOfparentIndividualTwo = indexOfparentIndividualTwo;
+		this.fitnessOfParentOne = fitnessOfParentOne;
+		this.fitnessOfParnetTwo = fitnessOfParnetTwo;
 	}
 
 	public Individual getParentIndividualOne() {
@@ -33,4 +37,9 @@ public class ParentIndividuals {
 	public void setParentIndividualTwo(Individual parentIndividualTwo) {
 		this.parentIndividualTwo = parentIndividualTwo;
 	}
+
+	public int getWorstIndexOfParent() {
+		return fitnessOfParentOne > fitnessOfParnetTwo ? indexOfparentIndividualTwo : indexOfparentIndividualOne;
+	}
+	
 }

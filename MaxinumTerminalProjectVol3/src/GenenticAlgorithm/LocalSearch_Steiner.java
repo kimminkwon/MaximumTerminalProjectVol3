@@ -33,15 +33,15 @@ public class LocalSearch_Steiner {
 			totalTerminals.add(p);
 		}
 		
-		System.out.println("TotalTerminals: " + totalTerminals);
+		//System.out.println("TotalTerminals: " + totalTerminals);
 	}
 	
 	public void localSearch() {
 		int cntOfNewSteiner = steinerDelete();
-		System.out.println("delete 연산 후 totalTerminals: " + totalTerminals);
+		//System.out.println("delete 연산 후 totalTerminals: " + totalTerminals);
 		
 		steinerAdd(cntOfNewSteiner);
-		System.out.println("add 연산 후 totalTerminals: " + totalTerminals);
+		//System.out.println("add 연산 후 totalTerminals: " + totalTerminals);
 		setModifyIndividual();
 	}
 	
@@ -50,7 +50,7 @@ public class LocalSearch_Steiner {
 		for(int i = ConstOfGA.NUMOFTERMINALS; i < totalTerminals.size(); i++) {
 			box.add(new Point(totalTerminals.get(i).getX(), totalTerminals.get(i).getY()));
 		}
-		System.out.println("새로운 SteinerList = " + box);
+		//System.out.println("새로운 SteinerList = " + box);
 		
 		calIndividual.setSteinerPointStatus(box);
 	}
@@ -62,22 +62,22 @@ public class LocalSearch_Steiner {
 		for(int i = 0; i < totalTerminals.size(); i++) {
 			if(i >= ConstOfGA.NUMOFTERMINALS) {
 				int degree = calIndividual.getDegreeOfSteinerPoint()[cntDegree];
-				System.out.println("cnt: " + i + ", totalTerminals[" + i + "] = " + totalTerminals.get(i));
-				System.out.println("steinerDegree[cntDegree] = " + calIndividual.getDegreeOfSteinerPoint()[cntDegree]);
+//				System.out.println("cnt: " + i + ", totalTerminals[" + i + "] = " + totalTerminals.get(i));
+//				System.out.println("steinerDegree[cntDegree] = " + calIndividual.getDegreeOfSteinerPoint()[cntDegree]);
 				
 				if(degree == 1) {
 					if(makeRandom() < ConstOfGA.PROBSTEINERDELETE) {
-						System.out.println("degree 1이 삭제 확률에 걸림");
+						//System.out.println("degree 1이 삭제 확률에 걸림");
 						totalTerminals.set(i, null);
 					}
 				}
 				
 				if(degree == 2) {
 					if(makeRandom() < ConstOfGA.PROBSTEINERDELETE) {
-						System.out.println("degree 2가 삭제 확률에 걸림");
+						//System.out.println("degree 2가 삭제 확률에 걸림");
 						totalTerminals.set(i, null);
 						if(makeRandom() < ConstOfGA.PROBSTEINERADD) {
-							System.out.println("새로운 스타이너로 추가 예정");
+							//System.out.println("새로운 스타이너로 추가 예정");
 							cntOfNewSteiner++;
 						}
 					}
@@ -99,7 +99,7 @@ public class LocalSearch_Steiner {
 					cnt++;
 				}
 			}
-			System.out.println("termianlArr = " + Arrays.toString(terminalArr));
+			//System.out.println("termianlArr = " + Arrays.toString(terminalArr));
 			
 			int r = makeRandom(terminalArr.length);
 			Point p = terminalArr[r];
@@ -125,9 +125,9 @@ public class LocalSearch_Steiner {
 				minDistIndex = i;
 			}
 		}
-		System.out.println("기준 Point: " + pointPair[0]);
-		System.out.println("1번쨰 Pair [ index = " + minDistIndex + ", minDist = " + minDist + ", Point = " + terminalArr[minDistIndex]);
-		
+//		System.out.println("기준 Point: " + pointPair[0]);
+//		System.out.println("1번쨰 Pair [ index = " + minDistIndex + ", minDist = " + minDist + ", Point = " + terminalArr[minDistIndex]);
+//		
 		minDist = Integer.MAX_VALUE;
 		int minDistIndexTwo = 0;
 		
@@ -139,22 +139,19 @@ public class LocalSearch_Steiner {
 			}
 		}
 		
-		System.out.println("2번쨰 Pair [ index = " + minDistIndexTwo + ", minDist = " + minDist + ", Point = " + terminalArr[minDistIndexTwo]);
+//		System.out.println("2번쨰 Pair [ index = " + minDistIndexTwo + ", minDist = " + minDist + ", Point = " + terminalArr[minDistIndexTwo]);
 		
 		pointPair[1] = terminalArr[minDistIndex];
 		pointPair[2] = terminalArr[minDistIndexTwo];
 		
-		System.out.println(Arrays.toString(pointPair));
+//		System.out.println(Arrays.toString(pointPair));
 		
 		Point newSteinerPoint = middlePoint(pointPair);
 		
 		boolean comparedRes = false;
-		for(int i = 0; i < pointPair.length; i++) {
-			if(comparePoint(newSteinerPoint, pointPair[i]) == true) {
-				System.out.println(newSteinerPoint + "는 해당 3쌍과 겹친다.");
-				comparedRes = true;
-				break;
-			}
+		if(idp.isSteinerOverlap(newSteinerPoint) == true) {
+//			System.out.println(newSteinerPoint + "는 터미널과 겹친다.");
+			comparedRes = true;
 		}
 		
 		if(comparedRes == true) {
@@ -162,16 +159,6 @@ public class LocalSearch_Steiner {
 		}
 		else return newSteinerPoint;
 		
-	}
-	
-	private boolean comparePoint(Point p1, Point p2) {
-		boolean res = false;
-		
-		if(p1.getX() == p2.getX() && p1.getY() == p2.getY()) {
-			res = true;
-		}
-		
-		return res;
 	}
 	
 	private Point middlePoint(Point[] pointPair) {

@@ -85,17 +85,10 @@ public class MakeIndividual {
 	
 	private boolean isOverlap(Point p1) {
 		boolean res = false;
-		for(int i = 0; i < terminals.length; i++) {
-			Point p2 = terminals[i];
-			if(p1.getX() == p2.getX() && p1.getY() == p2.getY()) {
-				res = true;
-			}
+		if(InputDataProcess.getInputDataProcess().isSteinerOverlap(p1) == true) {
+			res = true;
 		}
-		for(Point p2 : steinerPointStatus) {
-			if(p1.getX() == p2.getX() && p1.getY() == p2.getY()) {
-				res = true;
-			}
-		}
+	
 		return res;
 	}
 	
