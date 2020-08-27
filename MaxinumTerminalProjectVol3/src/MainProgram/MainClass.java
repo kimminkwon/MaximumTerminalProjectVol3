@@ -45,6 +45,8 @@ public class MainClass {
 		System.out.println("  - Vertical: " + idp.getHanan_vertical());
 		System.out.println("  - Horizental: " + idp.getHanan_horizental());
 		
+		System.out.println("* OutofConvexHall for Steiner Point Info..");
+		System.out.println(idp.getOutOfConvexHallSteinerPoints());
 		
 		// 초기 해 생성1. GivenLength 계산 후 IGP 얻기
 		GivenLength gl = new GivenLength();
