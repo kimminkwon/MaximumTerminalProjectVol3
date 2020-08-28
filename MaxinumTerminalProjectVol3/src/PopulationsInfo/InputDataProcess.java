@@ -122,6 +122,7 @@ public class InputDataProcess {
 	private boolean isOutofConvexhall(Point[] convexhallList, Point point) {
 		int cnt = 0;
 
+		System.out.println("============ " + point + "의 교차 회수 확인  ==============");
 		for(int i = 0; i < convexhallList.length; i++) {
 			if(i == convexhallList.length - 1) {
 				if(isCross(convexhallList[i], convexhallList[0], point) == true)
@@ -133,24 +134,38 @@ public class InputDataProcess {
 			}
 		}
 
-		System.out.println(point + "의 교차 회수: " + cnt);
+		System.out.println("	" + point + "의 교차 회수(홀수이면 컨벡스 홀 안에 있다!): " + cnt);
 		if(cnt % 2 == 1) // 해당 포인트는 컨벡스 홀 안에 있다.
 			return false;
 		else // 해당 포인트는 컨벡스 홀 바깥에 있다.
 			return true;
 	}
-
+	
 	private boolean isCross(Point line1, Point line2, Point p) {
+		if(line2.getY() < line1.getY()) {
+			Point box = line1;
+			line2 = line1;
+			line1 = box;
+		}
+		
+		System.out.println("	" + line1 + "와 " + line2 + "로 이뤄진 선분과 " + p +  "의 교차점이 있는가?");
 		
 		
 		if(p.getY() > line1.getY() && p.getY() < line2.getY()) {
-			double crossPointX = ((double)line2.getX() - (double)line1.getX()) * ((double)p.getY() - (double)line1.getY()) / ((double)line2.getY() - (double)line1.getY()) + (double)line1.getX();
-			System.out.println(line1 + "과 " + line2 + "의 교차점: " + crossPointX);
+			double crossPointX = ((double)line2.getX() - (double)line1.getX()) * ((double)p.getY() - (double)line1.getY()) 
+					/ ((double)line2.getY() - (double)line1.getY()) + (double)line1.getX();
+			System.out.println("	" + line1 + "과 " + line2 + "의 교차점: " + crossPointX);
 			if(crossPointX > p.getX())
 				return true;
+			else {
+				System.out.println("	없음!");
+			}
+		}
+		else {
+			System.out.println("	없음!");
 		}
 		
 		return false;
-	}
 	
+	}		
 }
