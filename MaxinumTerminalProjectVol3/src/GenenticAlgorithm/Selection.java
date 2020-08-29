@@ -26,7 +26,7 @@ public class Selection {
 			choiceIndividual = choiceIndividual(makeRandom(sumOfRouletteValues));
 			if(isOverlap != choiceIndividual)
 				break;
-			System.out.println("중복 발생!!");
+			// System.out.println("중복 발생!!");
 		}
 	
 		return choiceIndividual;

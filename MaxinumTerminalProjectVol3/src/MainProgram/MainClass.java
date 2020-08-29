@@ -1,5 +1,6 @@
 package MainProgram;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import ControlGroup.ControlGroup;
@@ -38,7 +39,6 @@ public class MainClass {
 			idp.setTerminal(i, x, y);
 		}
 		
-		
 		// 하난 그리드 생성
 		idp.makeHananGrid();
 		System.out.println("* HananGrid Info..");
@@ -46,7 +46,7 @@ public class MainClass {
 		System.out.println("  - Horizental: " + idp.getHanan_horizental());
 		
 		System.out.println("* OutofConvexHall for Steiner Point Info..");
-		System.out.println(idp.getOutOfConvexHallSteinerPoints());
+		System.out.println(idp.getInOfConvexHallSteinerPoints());
 		
 		// 초기 해 생성1. GivenLength 계산 후 IGP 얻기
 		GivenLength gl = new GivenLength();
@@ -55,10 +55,11 @@ public class MainClass {
 		System.out.println("* Given Length is " + givenLength + ", this length is " + ConstOfGA.GIVENLENGTHVALUE + " * Total Length " + gl.getTotalLength());
 		System.out.println("* IGP (SCALR OF IGP * (givenLength / totalLength)): " + IGP);
 
+		
 		// ControlGroup 생성
 		ControlGroup controlGroup = new ControlGroup_MST(); 
 		int controlGroupValue = controlGroup.getControlGroupValue(givenLength);
-
+		
 		System.out.println("* ControlGroupValue is " + controlGroupValue);
 
 		// 초기 해 생성2. Population 생성 (해 생성 -> 조정 -> 적합도)
@@ -78,7 +79,7 @@ public class MainClass {
 		for(int i = 0; i < ConstOfGA.SIZEOFPOPULATION; i++) {
 			System.out.println(individuals[i]);
 		}
-		
+
 		// 해 집단 조정연산
 		Adjustment ad; 
 		CalLength cl;
@@ -148,7 +149,6 @@ public class MainClass {
 		System.out.println(childIndividualArr[3]);
 		
 		// GA3. Mutation
-		
 		Mutation mutation;
 		for(int i = 0; i < 4; i++) {
 			mutation = new Mutation(childIndividualArr[i]);
@@ -166,7 +166,6 @@ public class MainClass {
 		System.out.println(childIndividualArr[3]);
 	
 		// GA4. Adjustment
-		
 		for(int i = 0; i < 4; i++) {
 			// System.out.println("조정연산시작" + i);
 			ad = new Adjustment(childIndividualArr[i], givenLength);
@@ -193,8 +192,6 @@ public class MainClass {
 		System.out.println("  - ChildIndividualFour...");
 		System.out.println(childIndividualArr[3]);
 		System.out.print("    Fitness: " + childFitnessArr[3] + "\n");
-		
-		
 		
 		// GA5. Local Search: Steiner, Terminal
 		LocalSearch_Steiner localSearch_Steiner;

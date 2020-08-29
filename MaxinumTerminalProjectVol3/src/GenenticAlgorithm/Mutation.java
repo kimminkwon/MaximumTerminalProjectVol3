@@ -42,6 +42,8 @@ public class Mutation {
 	}
 	
 	private void steinerMutation() {
+		int convexhallSize = InputDataProcess.getInputDataProcess().getInOfConvexHallSteinerPoints().size();
+		
 		int index = makeRandom(this.individual.getNumOfSteinerPoint());
 		int size = this.individual.getNumOfSteinerPoint();
 		int cnt = 0;
@@ -51,11 +53,9 @@ public class Mutation {
 			}
 			// System.out.println(index + "-th Steiner를 변이!");
 			
-			InputDataProcess idp = InputDataProcess.getInputDataProcess();
-
-			int x = idp.getHanan_vertical().get(makeRandom(idp.getHanan_vertical().size()));
-			int y = idp.getHanan_horizental().get(makeRandom(idp.getHanan_horizental().size()));
-			this.individual.getSteinerPointStatus().set(index, new Point(x, y));
+			int pointRandNum = makeRandom(convexhallSize);
+			Point p = InputDataProcess.getInputDataProcess().getInOfConvexHallSteinerPoints(pointRandNum);
+			this.individual.getSteinerPointStatus().set(index, p);
 			index++;
 			cnt++;
 		}

@@ -10,7 +10,8 @@ public class InputDataProcess {
 	private Point[] terminals;
 	private ArrayList<Integer> hanan_horizental;
 	private ArrayList<Integer> hanan_vertical;
-	private HashSet<Point> outOfConvexHallSteinerPoints;
+	private HashSet<Point> inOfConvexHallSteinerPoints;
+	private ArrayList<Point> inOfConvexHallSteinerPointsList;
 	
 	public static InputDataProcess getInputDataProcess() {
 		if(inputDataProcess == null) {
@@ -22,7 +23,8 @@ public class InputDataProcess {
 	
 	public InputDataProcess() {
 		this.terminals = new Point[ConstOfGA.NUMOFTERMINALS];
-		outOfConvexHallSteinerPoints = new HashSet<Point>();
+		inOfConvexHallSteinerPoints = new HashSet<Point>();
+		inOfConvexHallSteinerPointsList = new ArrayList<Point>();
 	}
 	
 	public void setTerminal(int index, int x, int y) {
@@ -84,15 +86,23 @@ public class InputDataProcess {
 	}
 	
 	private boolean SPOutofConvexHall(Point steinerPoint) { // true면 컨벡스홀 밖이다.
-		return outOfConvexHallSteinerPoints.contains(steinerPoint);
+		return inOfConvexHallSteinerPoints.contains(steinerPoint);
 	}
 	
-	public HashSet<Point> getOutOfConvexHallSteinerPoints() {
-		return outOfConvexHallSteinerPoints;
+	public HashSet<Point> getInOfConvexHallSteinerPoints() {
+		return inOfConvexHallSteinerPoints;
+	}
+	
+	public boolean isSteinerInConvexhall(Point p) {
+		return inOfConvexHallSteinerPoints.contains(p);
+	}
+	
+	public Point getInOfConvexHallSteinerPoints(int index) {
+		return inOfConvexHallSteinerPointsList.get(index);
 	}
 
-	public void setOutOfConvexHallSteinerPoints(HashSet<Point> outOfConvexHallSteinerPoints) {
-		this.outOfConvexHallSteinerPoints = outOfConvexHallSteinerPoints;
+	public void setInOfConvexHallSteinerPoints(HashSet<Point> inOfConvexHallSteinerPoints) {
+		this.inOfConvexHallSteinerPoints = inOfConvexHallSteinerPoints;
 	}
 
 	private boolean comparePoint(Point p1, Point p2) {
@@ -112,60 +122,62 @@ public class InputDataProcess {
 		for(int v = 0; v < hanan_vertical.size(); v++) {
 			for(int h = 0; h < hanan_horizental.size(); h++) {
 				Point p = new Point(hanan_vertical.get(v), hanan_horizental.get(h));
-				if(isOutofConvexhall(convexhallList, p) == true)
-					if(SPTerminalOverlap(p) == false)
-						outOfConvexHallSteinerPoints.add(p);
+				if(isOutofConvexhall(convexhallList, p) == false)
+					if(SPTerminalOverlap(p) == false) {
+						inOfConvexHallSteinerPointsList.add(p);
+						inOfConvexHallSteinerPoints.add(p);
+					}
 			}
 		}
 	}
 
 	private boolean isOutofConvexhall(Point[] convexhallList, Point point) {
 		int cnt = 0;
-
-		System.out.println("============ " + point + "의 교차 회수 확인  ==============");
+		
+		// System.out.println("============ " + point + "의 교차 회수 확인  ==============");
 		for(int i = 0; i < convexhallList.length; i++) {
 			if(i == convexhallList.length - 1) {
+				// System.out.println(convexhallList[i] + ", " +  convexhallList[0]);
 				if(isCross(convexhallList[i], convexhallList[0], point) == true)
 					cnt++;
 			}
 			else {
+				// System.out.println(convexhallList[i] + ", " +  convexhallList[i+1]);
 				if(isCross(convexhallList[i], convexhallList[i+1], point) == true)
 					cnt++;
 			}
 		}
 
-		System.out.println("	" + point + "의 교차 회수(홀수이면 컨벡스 홀 안에 있다!): " + cnt);
+		// System.out.println("	" + point + "의 교차 회수(홀수이면 컨벡스 홀 안에 있다!): " + cnt);
 		if(cnt % 2 == 1) // 해당 포인트는 컨벡스 홀 안에 있다.
 			return false;
 		else // 해당 포인트는 컨벡스 홀 바깥에 있다.
 			return true;
 	}
 	
-	private boolean isCross(Point line1, Point line2, Point p) {
+	private boolean isCross(Point line1Origin, Point line2Origin, Point pOrigin) {
+		Point line1 = new Point(line1Origin.getX(), line1Origin.getY());
+		Point line2 = new Point(line2Origin.getX(), line2Origin.getY());
+		Point p = new Point(pOrigin.getX(), pOrigin.getY());
+		
 		if(line2.getY() < line1.getY()) {
 			Point box = line1;
-			line2 = line1;
-			line1 = box;
+			line1 = line2;
+			line2 = box;
 		}
 		
-		System.out.println("	" + line1 + "와 " + line2 + "로 이뤄진 선분과 " + p +  "의 교차점이 있는가?");
+		//System.out.println("	" + line1 + "와 " + line2 + "로 이뤄진 선분과 " + p +  "의 교차점이 있는가?");
+		double py = (double)p.getY() + 0.00001d;
 		
-		
-		if(p.getY() > line1.getY() && p.getY() < line2.getY()) {
-			double crossPointX = ((double)line2.getX() - (double)line1.getX()) * ((double)p.getY() - (double)line1.getY()) 
+		if(py > line1.getY() && py < line2.getY()) {
+			double crossPointX = ((double)line2.getX() - (double)line1.getX()) * (py - (double)line1.getY()) 
 					/ ((double)line2.getY() - (double)line1.getY()) + (double)line1.getX();
-			System.out.println("	" + line1 + "과 " + line2 + "의 교차점: " + crossPointX);
+			// System.out.println("	" + line1 + "과 " + line2 + "의 교차점: " + crossPointX);
 			if(crossPointX > p.getX())
 				return true;
-			else {
-				System.out.println("	없음!");
-			}
-		}
-		else {
-			System.out.println("	없음!");
 		}
 		
 		return false;
 	
-	}		
+	}
 }

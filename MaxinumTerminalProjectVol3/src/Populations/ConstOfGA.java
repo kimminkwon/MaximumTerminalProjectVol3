@@ -1,8 +1,8 @@
 package Populations;
 
 public class ConstOfGA {
-	public static final int SIZEOFPOPULATION = 5;
-	public static int NUMOFTERMINALS = 20;
+	public static final int SIZEOFPOPULATION = 100;
+	public static int NUMOFTERMINALS = 500;
 	public static double GIVENLENGTHVALUE = 0.5;
 	public static double SCALROFIGP = 1.0;
 	public static double ALPHA = 0.2;

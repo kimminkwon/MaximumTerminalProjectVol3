@@ -60,19 +60,16 @@ public class MakeIndividual {
 	private void makeSteinerPointStatus() {
 		steinerPointStatus = new ArrayList<>();
 		
-		ArrayList<Integer> hananV = InputDataProcess.getInputDataProcess().getHanan_vertical();
-		ArrayList<Integer> hananH = InputDataProcess.getInputDataProcess().getHanan_horizental();
-		
+		int convexhallSize = InputDataProcess.getInputDataProcess().getInOfConvexHallSteinerPoints().size();
 		int limit = Math.max(0, makeRandom(numOfTerminals) - 1);
 		
 		// System.out.println("터미널 개수보다 적은 난수(스타이너 포인트 개수): " + limit);
 		int cnt = 0;
 		while(cnt < limit) {
-			Point p = new Point(hananV.get(makeRandom(hananV.size())), hananH.get(makeRandom(hananH.size())));
-			if(isOverlap(p) == false) {
-				steinerPointStatus.add(p);	
-				cnt++;
-			}
+			int pointRandNum = makeRandom(convexhallSize);
+			Point p = InputDataProcess.getInputDataProcess().getInOfConvexHallSteinerPoints(pointRandNum);
+			steinerPointStatus.add(p);	
+			cnt++;
 		}
 		/*
 		System.out.print("생성된 스타이너 포인트: ");

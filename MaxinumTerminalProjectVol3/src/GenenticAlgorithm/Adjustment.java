@@ -43,7 +43,6 @@ public class Adjustment {
 	public void adjustment() {
 		UsingDistance ud = new UsingDistance(totalTerminals);
 		this.dist = ud.preprocessingDist();
-		
 		boolean[] selected = new boolean[totalTerminals.length];
 		Arrays.fill(selected, false);
 		int[] minDist = new int[totalTerminals.length];

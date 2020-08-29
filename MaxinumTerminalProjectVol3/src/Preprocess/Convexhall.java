@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Stack;
 
+import Populations.ConstOfGA;
 import Populations.Point;
 import PopulationsInfo.InputDataProcess;
 
@@ -14,11 +15,12 @@ public class Convexhall {
 	
 	public Convexhall() {
 		this.idp = InputDataProcess.getInputDataProcess();
-		this.terminals = idp.getTerminals();
+		this.terminals = idp.getTerminals().clone();
 		makeConvexhall();
 	}
 	
 	public Point[] getConvexhallList() {
+		System.out.println("==================ConvexHall================");
 		System.out.println(Arrays.toString(convexhallList));
 		return convexhallList;
 	}
@@ -26,13 +28,40 @@ public class Convexhall {
 	private void makeConvexhall() {
 		int flagPointIndex = findFlagPoint();
 		swapTerminals(flagPointIndex, 0);
-		System.out.println(flagPointIndex);
+		System.out.println(InputDataProcess.getInputDataProcess().getTerminalCoor(flagPointIndex));
 		sortPointListUsingDegree();
+
+		System.out.println(Arrays.toString(terminals));
 		
 		Stack<Point> s = new Stack<Point>();
 		s.push(terminals[0]);
 		s.push(terminals[1]);
+		
+		int nextIndex = 2;
+
+		while (nextIndex < ConstOfGA.NUMOFTERMINALS) {
+			Point first, second, next;
+			next = terminals[nextIndex];
+			while (s.size() >= 2) {
+				second = s.peek();
+				s.pop();
+				first = s.peek();
+				// first, second, next가 좌회전 ( > 0 )이라면 second push
+				// 우회전( < 0 )이라면 위의 while문 계속 반복
+				if (CounterClockWise(first, second, next) == "left") {
+					s.push(second);
+					break;
+				}
+			}
+		    s.push(next);
+		    nextIndex++;
+		}
+		
+		/*
 		for(int i = 2; i < terminals.length; i++) {
+			System.out.println(i);
+			System.out.println(s);
+			
 			Point second = s.pop();
 			Point first = s.peek();
 			Point next = terminals[i];
@@ -45,6 +74,7 @@ public class Convexhall {
 				s.push(next);
 			}
 		}
+		*/
 		
 		makeConvexhallList(s);
 	}
