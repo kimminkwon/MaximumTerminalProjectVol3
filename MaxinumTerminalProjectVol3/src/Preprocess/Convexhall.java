@@ -20,18 +20,18 @@ public class Convexhall {
 	}
 	
 	public Point[] getConvexhallList() {
-		System.out.println("==================ConvexHall================");
-		System.out.println(Arrays.toString(convexhallList));
+		// System.out.println("==================ConvexHall================");
+		// System.out.println(Arrays.toString(convexhallList));
 		return convexhallList;
 	}
 	
 	private void makeConvexhall() {
 		int flagPointIndex = findFlagPoint();
 		swapTerminals(flagPointIndex, 0);
-		System.out.println(InputDataProcess.getInputDataProcess().getTerminalCoor(flagPointIndex));
+		// System.out.println(InputDataProcess.getInputDataProcess().getTerminalCoor(flagPointIndex));
 		sortPointListUsingDegree();
 
-		System.out.println(Arrays.toString(terminals));
+		// System.out.println(Arrays.toString(terminals));
 		
 		Stack<Point> s = new Stack<Point>();
 		//1. 0번점과 1번점을 스택에 넣는다.
@@ -43,19 +43,19 @@ public class Convexhall {
 		while (nextIndex < ConstOfGA.NUMOFTERMINALS) {
 			Point first, second, next;
 			next = new Point(terminals[nextIndex].getX(), terminals[nextIndex].getY());
-			System.out.println("현재 스택: " + s);
-			System.out.println("next: " + next);
+			// System.out.println("현재 스택: " + s);
+			// System.out.println("next: " + next);
 			
 			while (s.size() >= 2) {
 				second = new Point(s.peek().getX(), s.peek().getY());
 				s.pop();
 				first = new Point(s.peek().getX(), s.peek().getY());
-				System.out.println("vector " + first + " to " + second + "에 대해 " + next + "는 어느쪽에 있는가 = " + CounterClockWise(first, second, next));
+				// System.out.println("vector " + first + " to " + second + "에 대해 " + next + "는 어느쪽에 있는가 = " + CounterClockWise(first, second, next));
 
 				// first, second, next가 좌회전 ( > 0 )이라면 second push
 				// 우회전( < 0 )이라면 위의 while문 계속 반복
 				if (CounterClockWise(first, second, next) == "left") {
-					System.out.println(next + "는 좌회전입니다.");
+					// System.out.println(next + "는 좌회전입니다.");
 					s.push(second);
 					break;
 				}

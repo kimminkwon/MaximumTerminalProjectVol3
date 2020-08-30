@@ -1,20 +1,21 @@
 package Populations;
 
 public class ConstOfGA {
-	public static final int SIZEOFPOPULATION = 100;
-	public static int NUMOFTERMINALS = 500;
+	public static final int SIZEOFPOPULATION = 150;
+	public static final int NUMOFMAXIMUMGENERATIONS = 5000;
+	public static int NUMOFTERMINALS = 1000;
 	public static double GIVENLENGTHVALUE = 0.5;
 	public static double SCALROFIGP = 1.0;
 	public static double ALPHA = 0.2;
 	public static double BETA = 0.7;
 	public static double GAMMA = 0.1;
-	public static double MUTATIONPORB_TERMINAL = 0.5;
-	public static double MUTATIONPORB_STEINER = 0.5;
+	public static double MUTATIONPORB_TERMINAL = 0.05;
+	public static double MUTATIONPORB_STEINER = 0.05;
 	public static int NUMOFMUATATION_TERMINAL = 3;
-	public static int NUMOFMUATATION_STEINER = 2;
+	public static int NUMOFMUATATION_STEINER = 3;
 	public static double PROBSTEINERDELETE = 0.5;
-	public static double PROBSTEINERADD = 1.0;
-	public static double PROBSTEINERADDPARTTWO = 0.5;
+	public static double PROBSTEINERADD = 0.2;
+	public static double PROBSTEINERADDPARTTWO = 0.1;
 	
 	public static int getNumofterminals() {
 		return NUMOFTERMINALS;
