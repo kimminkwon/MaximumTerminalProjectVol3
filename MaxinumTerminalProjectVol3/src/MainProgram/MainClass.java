@@ -39,6 +39,10 @@ public class MainClass {
 			idp.setTerminal(i, x, y);
 		}
 		
+		for(int i = 0; i < ConstOfGA.NUMOFTERMINALS; i++) {
+			System.out.println(idp.getTerminalCoor(i));
+		}
+		
 		// 하난 그리드 생성
 		idp.makeHananGrid();
 		System.out.println("* HananGrid Info..");

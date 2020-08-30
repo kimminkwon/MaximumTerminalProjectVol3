@@ -34,21 +34,28 @@ public class Convexhall {
 		System.out.println(Arrays.toString(terminals));
 		
 		Stack<Point> s = new Stack<Point>();
-		s.push(terminals[0]);
-		s.push(terminals[1]);
+		//1. 0번점과 1번점을 스택에 넣는다.
+		s.push(new Point(terminals[0].getX(), terminals[0].getY()));
+		s.push(new Point(terminals[1].getX(), terminals[1].getY()));
 		
 		int nextIndex = 2;
 
 		while (nextIndex < ConstOfGA.NUMOFTERMINALS) {
 			Point first, second, next;
-			next = terminals[nextIndex];
+			next = new Point(terminals[nextIndex].getX(), terminals[nextIndex].getY());
+			System.out.println("현재 스택: " + s);
+			System.out.println("next: " + next);
+			
 			while (s.size() >= 2) {
-				second = s.peek();
+				second = new Point(s.peek().getX(), s.peek().getY());
 				s.pop();
-				first = s.peek();
+				first = new Point(s.peek().getX(), s.peek().getY());
+				System.out.println("vector " + first + " to " + second + "에 대해 " + next + "는 어느쪽에 있는가 = " + CounterClockWise(first, second, next));
+
 				// first, second, next가 좌회전 ( > 0 )이라면 second push
 				// 우회전( < 0 )이라면 위의 while문 계속 반복
 				if (CounterClockWise(first, second, next) == "left") {
+					System.out.println(next + "는 좌회전입니다.");
 					s.push(second);
 					break;
 				}
@@ -79,6 +86,19 @@ public class Convexhall {
 		makeConvexhallList(s);
 	}
 	
+	// 직선 AB와 C의 관계
+	private String CounterClockWise(Point A, Point B, Point C) {
+		int part1 = (A.getX() * B.getY() + B.getX() * C.getY() + C.getX() * A.getY());
+		int part2 = (A.getX() * C.getY() + B.getX() * A.getY() + C.getX() * B.getY());
+		int ccw = part1 - part2;
+		
+		if(ccw < 0)
+			return "right";
+		else if(ccw > 0)
+			return "left";
+		else
+			return "same";
+	}
 	
 
 	private void makeConvexhallList(Stack<Point> s) {
@@ -97,18 +117,18 @@ public class Convexhall {
 	private int findFlagPoint() {
 		int index = 0;
 		int minYCoor = Integer.MAX_VALUE;
-		int thisXcoor = 0;
 		for(int i = 0; i < terminals.length; i++) {
 			if(minYCoor > terminals[i].getY()) {
 				index = i;
 				minYCoor = terminals[i].getY();
-				thisXcoor = terminals[i].getX();
 			}
-			else if(minYCoor == terminals[i].getY() && thisXcoor < terminals[i].getX()) {
-				index = i;
-				minYCoor = terminals[i].getY();
-				thisXcoor = terminals[i].getX();
-			}
+		}
+		for(int i = 0; i < terminals.length; i++) {
+			if(terminals[index].getY() >= terminals[i].getY())
+				if(terminals[index].getX() >= terminals[i].getX()) {
+					index = i;
+					minYCoor = terminals[i].getY();
+				}
 		}
 		
 		return index;
@@ -131,17 +151,6 @@ public class Convexhall {
 
 	        Arrays.sort(terminals, 1, terminals.length, anglePointComparator);
 	}
-	
-	
-	private String CounterClockWise(Point flag, Point p1, Point p2) {
-		int ccw = (flag.getX() * p1.getY() + p1.getX() * p2.getY() + p2.getX() * flag.getY())
-				- (flag.getY() * p1.getX() + p1.getY() * p2.getX() + p2.getY() * p1.getX());
-		if(ccw < 0)
-			return "right";
-		else if(ccw > 0)
-			return "left";
-		else
-			return "same";
-	}
+
 
 }
