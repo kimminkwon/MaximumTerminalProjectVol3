@@ -68,14 +68,21 @@ public class PrintFinalResult {
 				bs.write(s.getBytes());
 				s = "- Time: " + time[c] + "\n";
 				bs.write(s.getBytes());
-				s = "- Maximum Terminal Value: " + maximumTerminals[c] + "\n";
+				s = "- Best Individual Terminal Value: " + maximumTerminals[c] + "\n";
 				bs.write(s.getBytes());
-				s = "- Best Individual\n";
+				s = "- Best Individual Steiner Value:" + bestIndividuals[c].getNumOfSteinerPoint() +"\n";
+				bs.write(s.getBytes());
+				s = "- Best Individual Length:" + bestIndividuals[c].getLength() +"\n";
+				bs.write(s.getBytes());
+			}
+
+			for(int c = 0; c < ConstOfGA.NUMOFCYCLE; c++) {
+				s = "\n================================= Best Individual in Cycle " + c + " =================================\n";
 				bs.write(s.getBytes());
 				s = bestIndividuals[c].toString();
 				bs.write(s.getBytes());
 				s = "\n";
-				bs.write(s.getBytes());		
+				bs.write(s.getBytes());
 			}
 		} 
 		catch (Exception e) {

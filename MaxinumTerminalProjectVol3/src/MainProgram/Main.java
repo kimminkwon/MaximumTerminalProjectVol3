@@ -36,8 +36,6 @@ public class Main {
 			idp.setTerminal(i, x, y);
 		}
 		
-		input.close();
-
 		// Cycle마다 저장할 배열
 		int[] numOfGenerations = new int[ConstOfGA.NUMOFCYCLE]; 
 		double[] time = new double[ConstOfGA.NUMOFCYCLE]; 
@@ -228,5 +226,13 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		while(true) {
+			if(input.nextLine().equals("end")) {
+				break;
+			}
+		}
+		input.close();
+
 	}
 }
