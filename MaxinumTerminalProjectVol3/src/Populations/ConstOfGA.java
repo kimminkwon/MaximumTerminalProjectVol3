@@ -14,7 +14,7 @@ public class ConstOfGA {
 	public static int GIVENLENGTH = 0;
 
 	public static int SIZEOFPOPULATION = 150;
-	public static int NUMOFMAXIMUMGENERATIONS = 1000000;
+	public static int NUMOFMAXIMUMGENERATIONS = 40000;
 	public static double PROBOFSWITCHNEWSTEINERMAKE = 0.5;
 	
 	public static double PROBOFSWITCHCONDITION = 0.5;

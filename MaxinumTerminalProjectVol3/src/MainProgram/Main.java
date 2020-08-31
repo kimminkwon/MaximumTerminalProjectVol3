@@ -39,7 +39,7 @@ public class Main {
 		// Cycle마다 저장할 배열
 		int[] numOfGenerations = new int[ConstOfGA.NUMOFCYCLE]; 
 		double[] time = new double[ConstOfGA.NUMOFCYCLE]; 
-		int[] maximumTerminals = new int[ConstOfGA.NUMOFCYCLE]; 
+		int[] switchMaximumTerminals = new int[ConstOfGA.NUMOFCYCLE]; 
 		Individual[] bestIndividuals = new Individual[ConstOfGA.NUMOFCYCLE];
 		
 		// 필요한 변수
@@ -178,6 +178,13 @@ public class Main {
 					SwitchCondition sc = new SwitchCondition(population, givenLength);
 					if (sc.switchConst() == true) {
 						isPart2 = true;
+						int maximumTerminal = 0;
+						for(int i = 0; i < ConstOfGA.SIZEOFPOPULATION; i++) {
+							if(population.getIndividual(i).getNumOfTerminal() > maximumTerminal) {
+								maximumTerminal = population.getIndividual(i).getNumOfTerminal();
+							}
+						}						
+						switchMaximumTerminals[cycle] = maximumTerminal;
 					}
 				} 
 				else {
@@ -207,7 +214,6 @@ public class Main {
 			
 			numOfGenerations[cycle] = numOfGeneration;
 			time[cycle] = totalTime;
-			maximumTerminals[cycle] = maximumTerminal;
 			try {
 				bestIndividuals[cycle] = (Individual) population.getIndividual(indexOfbestIndividual).clone();
 			} catch (CloneNotSupportedException e) {
@@ -221,7 +227,7 @@ public class Main {
 		
 		PrintFinalResult p = new PrintFinalResult();
 		try {
-			p.print(numOfGenerations, time, maximumTerminals, bestIndividuals);
+			p.print(numOfGenerations, time, switchMaximumTerminals, bestIndividuals);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
