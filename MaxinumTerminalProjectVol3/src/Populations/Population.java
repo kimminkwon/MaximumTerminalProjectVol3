@@ -1,5 +1,4 @@
 package Populations;
-import java.util.*;
 
 public class Population {
 	private Individual[] population;

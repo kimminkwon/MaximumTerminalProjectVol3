@@ -1,15 +1,10 @@
 package GenenticAlgorithm;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.*;
 import Populations.ConstOfGA;
 import Populations.Individual;
 import Populations.Point;
-import PopulationsInfo.CalLength;
 import PopulationsInfo.InputDataProcess;
-import Preprocess.UsingDistance;
 
 public class LocalSearch_Steiner {
 	private ArrayList<Point> totalTerminals;

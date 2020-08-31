@@ -1,7 +1,5 @@
 package GenenticAlgorithm;
 
-import java.util.Arrays;
-
 import Populations.*;
 
 public class Selection {
@@ -18,7 +16,6 @@ public class Selection {
 	}
 	
 	public int selection() {
-		Individual selectedIndividual = null;
 		int choiceIndividual = 0;
 		double sumOfRouletteValues = setRouletteValues();
 		// System.out.println("RouletteValues: " + Arrays.toString(rouletteValues));

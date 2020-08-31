@@ -10,16 +10,25 @@ public class MakeIndividual {
 	private boolean[] terminalStatus;
 	private int numOfTerminals;
 	private ArrayList<Point> steinerPointStatus;
-	private Point[] terminals;
-	
-	
+
 	public MakeIndividual(double IGP, double[] igpArr) {
 		this.IGP = IGP;
 		this.igpArr = Arrays.copyOf(igpArr, igpArr.length);
-		this.terminals = InputDataProcess.getInputDataProcess().getTerminals();
+		
+		if(makeRandom() < 0.5) {
+			reverseIgpArr();
+		}
 		// System.out.println(Arrays.toString(this.igpArr));
 		makeTerminalStatus();
 		makeSteinerPointStatus();
+	}
+	
+	private void reverseIgpArr() {
+		double[] igpArrReverse = new double[igpArr.length];
+		for(int i = 0; i < igpArr.length; i++) {
+			igpArrReverse[igpArr.length - 1 - i] = igpArr[i];
+		}
+		this.igpArr = igpArrReverse;
 	}
 	
 	public boolean[] getTerminalStatus() {
@@ -59,6 +68,7 @@ public class MakeIndividual {
 	
 	private void makeSteinerPointStatus() {
 		steinerPointStatus = new ArrayList<>();
+		HashSet<Point> steinerPointStatusHash = new HashSet<Point>();
 		
 		int convexhallSize = InputDataProcess.getInputDataProcess().getInOfConvexHallSteinerPoints().size();
 		int limit = Math.max(0, makeRandom(numOfTerminals) - 1);
@@ -68,7 +78,9 @@ public class MakeIndividual {
 		while(cnt < limit) {
 			int pointRandNum = makeRandom(convexhallSize);
 			Point p = InputDataProcess.getInputDataProcess().getInOfConvexHallSteinerPoints(pointRandNum);
-			steinerPointStatus.add(p);	
+			if(steinerPointStatusHash.add(p)) {
+				steinerPointStatus.add(p);	
+			}
 			cnt++;
 		}
 		/*
@@ -79,18 +91,14 @@ public class MakeIndividual {
 		}
 		*/
 	}
-	
-	private boolean isOverlap(Point p1) {
-		boolean res = false;
-		if(InputDataProcess.getInputDataProcess().isSteinerOverlap(p1) == true) {
-			res = true;
-		}
-	
-		return res;
-	}
-	
+
 	private int makeRandom(int limit) {
 		int r = (int)(limit * Math.random());
+		return r;
+	}
+	
+	private double makeRandom() {
+		double r = Math.random();
 		return r;
 	}
 	

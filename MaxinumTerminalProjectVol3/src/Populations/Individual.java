@@ -1,10 +1,9 @@
 package Populations;
 import java.util.*;
 
-public class Individual {
+public class Individual implements Cloneable {
 	private boolean[] terminalStatus;
 	private ArrayList<Point> steinerPointStatus;
-	private ArrayList<Integer> steinerPointDegree;
 	private int numOfTerminal;
 	private int numOfSteinerPoint;
 	private int[] degreeOfSteinerPoint;
@@ -88,6 +87,12 @@ public class Individual {
 		return "  - terminalStatus=" + Arrays.toString(this.terminalStatus) + "\n    steinerPointStatus="
 				+ this.steinerPointStatus + "\n    numOfTerminal=" + numOfTerminal + ", numOfSteinerPoint=" + numOfSteinerPoint + ", length=" + length
 				+ "\n    degreeOfSteiner=" + Arrays.toString(degreeOfSteinerPoint);
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
 	}
 
 }

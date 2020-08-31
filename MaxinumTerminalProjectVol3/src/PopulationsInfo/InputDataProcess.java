@@ -1,9 +1,7 @@
 package PopulationsInfo;
 import Populations.*;
 import Preprocess.Convexhall;
-
 import java.util.*;
-import java.math.*;
 
 public class InputDataProcess {
 	private static InputDataProcess inputDataProcess = null;
@@ -86,7 +84,7 @@ public class InputDataProcess {
 	}
 	
 	private boolean SPOutofConvexHall(Point steinerPoint) { // true면 컨벡스홀 밖이다.
-		return inOfConvexHallSteinerPoints.contains(steinerPoint);
+		return !inOfConvexHallSteinerPoints.contains(steinerPoint);
 	}
 	
 	public HashSet<Point> getInOfConvexHallSteinerPoints() {

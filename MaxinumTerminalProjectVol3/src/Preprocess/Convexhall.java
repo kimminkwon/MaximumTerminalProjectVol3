@@ -9,14 +9,19 @@ import Populations.Point;
 import PopulationsInfo.InputDataProcess;
 
 public class Convexhall {
-	private InputDataProcess idp;
+	// private InputDataProcess idp;
 	private Point[] terminals;
 	private Point[] convexhallList;
 	
 	public Convexhall() {
-		this.idp = InputDataProcess.getInputDataProcess();
-		this.terminals = idp.getTerminals().clone();
+		// this.idp = InputDataProcess.getInputDataProcess();
+		this.terminals = InputDataProcess.getInputDataProcess().getTerminals().clone();
 		makeConvexhall();
+	}
+	
+	public Convexhall(Point[] terminals) {
+		// this.idp = InputDataProcess.getInputDataProcess();
+		this.terminals = terminals;
 	}
 	
 	public Point[] getConvexhallList() {

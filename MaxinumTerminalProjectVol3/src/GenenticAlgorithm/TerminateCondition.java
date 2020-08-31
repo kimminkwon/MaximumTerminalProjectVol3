@@ -18,7 +18,7 @@ public class TerminateCondition {
 				if(i != j && population.getFitnessOfIndividual(i) == population.getFitnessOfIndividual(j)) {
 					cnt++;
 				}
-				if(cnt > (ConstOfGA.SIZEOFPOPULATION * 0.9)) {
+				if(cnt > (ConstOfGA.SIZEOFPOPULATION * 0.85)) {
 					res = true;
 				}
 			}

@@ -3,7 +3,6 @@ package ControlOrLength;
 import Populations.*;
 import PopulationsInfo.*;
 import java.util.*;
-import java.io.*;
 
 public class GivenLength {
 	private double IGP;

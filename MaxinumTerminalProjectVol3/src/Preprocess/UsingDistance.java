@@ -1,8 +1,6 @@
 package Preprocess;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import Populations.Point;
 
 public class UsingDistance {

@@ -1,14 +1,11 @@
 package GenenticAlgorithm;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import Populations.ConstOfGA;
 import Populations.Individual;
 import Populations.Point;
 
 public class Crossover {
-	private ParentIndividuals parentIndividuals;
 	private Individual parentIndividualOne;
 	private Individual parentIndividualTwo;
 	
@@ -18,7 +15,6 @@ public class Crossover {
 	private Individual childIndividualFour;
 	
 	public Crossover(ParentIndividuals parentIndividuals) {
-		this.parentIndividuals = parentIndividuals;
 		this.parentIndividualOne = parentIndividuals.getParentIndividualOne();
 		this.parentIndividualTwo = parentIndividuals.getParentIndividualTwo();
 		

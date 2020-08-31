@@ -15,7 +15,6 @@ public class LocalSearch_Terminal {
 	private int givenLength;
 	private Individual calIndividual;
 	private Point[] totalTerminals;
-	private Point[] totalTerminalsPlusSteiner;
 	private InputDataProcess idp = null;
 	private int[][] dist;
 	private int[] degree;
@@ -67,16 +66,13 @@ public class LocalSearch_Terminal {
 		boolean[] terminalStatus = new boolean[totalTerminals.length + newSteinerPoints.size()];
 		ArrayList<Point> steinerPointStatus = new ArrayList<Point>();
 		
-		int cnt = 0;
 		// 1. 터미널 복사
 		for(int i = 0; i < ConstOfGA.NUMOFTERMINALS; i++) {
 			terminalStatus[i] = selected[i];
-			cnt++;
 		}
 		// 2. 기존 스타이너 포인트 추가
 		for(int i = ConstOfGA.NUMOFTERMINALS; i < totalTerminals.length ; i++) {
 			steinerPointStatus.add(totalTerminals[i]);
-			cnt++;
 		}
 		// 3. 새로운 스타이너 포인트 추가
 		for(Point p : newSteinerPoints) {

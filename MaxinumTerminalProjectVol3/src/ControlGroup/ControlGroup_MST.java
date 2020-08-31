@@ -3,7 +3,6 @@ package ControlGroup;
 import java.util.Arrays;
 
 import Populations.ConstOfGA;
-import Populations.Point;
 import PopulationsInfo.InputDataProcess;
 import Preprocess.UsingDistance;
 
