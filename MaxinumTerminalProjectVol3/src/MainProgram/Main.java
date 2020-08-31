@@ -9,7 +9,7 @@ import Populations.*;
 import PopulationsInfo.*;
 import PrintClasses.*;
 
-public class MainClass {
+public class Main {
 	public static void main(String[] args) {
 		
 		// 입력 받기

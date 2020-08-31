@@ -1,7 +1,5 @@
 package Populations;
 
-import java.util.HashSet;
-
 public class Point {
 	private int x;
 	private int y;
@@ -44,13 +42,5 @@ public class Point {
 	public String toString() {
 		return "(" + x + ", " + y + ")";
 	}
-	
 
-	public static void main(String[] args) {
-		HashSet<Point> h = new HashSet<Point>();
-		System.out.println(h.add(new Point(1, 1)));
-		System.out.println(h.add(new Point(1, 2)));
-		System.out.println(h.add(new Point(1, 1)));
-		
-	}
 }
