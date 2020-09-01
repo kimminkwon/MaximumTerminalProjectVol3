@@ -42,11 +42,11 @@ public class PrintFinalResult {
 		System.out.println("- RESULT OF THIS GA...");
 		System.out.println("	* Given Length: " + ConstOfGA.GIVENLENGTH);
 		System.out.println("	* Control Group Value: " + ConstOfGA.CONTROLGROUPVALUE);
-		System.out.println("	* AverageTerminal: " + averageTerminal);
-		System.out.println("	* AverageSwitchTerminal: " + averageSwitchTerminal);
-		System.out.println("	* AverageSteiner: " + averageSteiner);
-		System.out.println("	* AverageLength: " + averageLength);
-		System.out.println("	* AverageTime: " + averageTime);
+		System.out.println("	* Average Terminal: " + averageTerminal);
+		System.out.println("	* Average SwitchTerminal: " + averageSwitchTerminal);
+		System.out.println("	* Average Steiner: " + averageSteiner);
+		System.out.println("	* Average Length: " + averageLength);
+		System.out.println("	* Average Time: " + averageTime);
 		
 		System.out.println();
 		
@@ -69,7 +69,7 @@ public class PrintFinalResult {
 		}
 		BufferedOutputStream bs = null;
 		try {
-			bs = new BufferedOutputStream(new FileOutputStream("result_" + ConstOfGA.INPUTNAME + ".txt"));
+			bs = new BufferedOutputStream(new FileOutputStream(ConstOfGA.TOPIC + "_result_" + ConstOfGA.INPUTNAME + ".txt"));
 			String s = "\n================================= " + ConstOfGA.TOPIC + " =================================\n";
 			bs.write(s.getBytes());
 			s = "- INPUT FILE NAME: " + ConstOfGA.INPUTNAME + "\n";
@@ -94,15 +94,15 @@ public class PrintFinalResult {
 			bs.write(s.getBytes());
 			s = "	* Control Group Value: " + ConstOfGA.CONTROLGROUPVALUE + "\n";
 			bs.write(s.getBytes());
-			s = "	* AverageTerminal: " + averageTerminal + "\n";
+			s = "	* Average Terminal: " + averageTerminal + "\n";
 			bs.write(s.getBytes());
-			s = "	* AverageSwitchTerminal: " + averageSwitchTerminal + "\n";
+			s = "	* Average SwitchTerminal: " + averageSwitchTerminal + "\n";
 			bs.write(s.getBytes());
-			s = "	* AverageSteiner: " + averageSteiner + "\n";
+			s = "	* Average Steiner: " + averageSteiner + "\n";
 			bs.write(s.getBytes());	
-			s = "	* AverageLength: " + averageLength + "\n";
+			s = "	* Average Length: " + averageLength + "\n";
 			bs.write(s.getBytes());
-			s = "	* AverageTime: " + averageTime + "\n";
+			s = "	* Average Time: " + averageTime + "\n";
 			bs.write(s.getBytes());
 			
 			for(int c = 0; c < ConstOfGA.NUMOFCYCLE; c++) {

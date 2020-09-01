@@ -276,6 +276,7 @@ public class SwitchCondition {
 		}
 		return maxTerminalsIndex;
 	}
+	
 
 	/*
 	private void makeConvexHallList(int maxTerminalsIndex) {
