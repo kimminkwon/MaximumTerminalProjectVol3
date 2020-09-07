@@ -1,0 +1,32 @@
+
+================================= OtherComputerCheck =================================
+- INPUT FILE NAME: InputFile3
+- VALUE OF THIS GA...
+	* Num of Cycles: 1
+	* Size of Population: 80
+	* Num of Terminals: 500
+	* Switch Flag: 0.5
+	* FitnessPart1: (0.16, 0.64, 0.2)
+	* FitnessPart2: (0.1, 0.4, 0.5)
+- RESULT OF THIS GA...
+	* Given Length: 6189
+	* Control Group Value: 192.0
+	* Average Terminal: 218.0
+	* Average SwitchTerminal: 216.0
+	* Average Steiner: 60.0
+	* Average Length: 6152.0
+	* Average Time: 112.433
+
+================================= Cycle 0 =================================
+- Num of Generations: 6792
+- Time: 112.433
+- Switch Maximum Terminal Value: 216
+- Best Individual Terminal Value: 218
+- Best Individual Steiner Value:60
+- Best Individual Length:6152
+
+================================= Best Individual in Cycle 0 =================================
+  - terminalStatus=[false, true, false, true, false, true, true, false, false, false, false, false, true, false, true, true, true, true, true, false, true, true, true, false, true, false, false, true, false, false, true, false, true, true, false, true, false, false, true, false, false, false, true, false, true, false, true, true, true, true, false, true, true, false, false, false, false, true, false, true, false, true, true, false, false, true, false, true, true, true, false, true, false, false, false, true, false, true, false, true, false, true, true, false, false, false, false, false, false, false, false, true, true, false, true, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, true, true, false, false, false, true, false, true, true, false, false, true, false, true, false, true, false, false, true, true, false, true, true, true, true, false, false, true, false, false, false, true, false, false, false, false, false, false, false, false, true, false, true, true, true, false, false, false, false, false, true, true, true, false, true, true, false, false, false, false, true, true, false, false, false, true, true, false, true, true, false, true, true, false, false, true, false, false, false, true, false, false, true, true, false, false, true, false, false, false, false, false, true, false, true, true, false, true, true, true, false, false, false, false, true, true, false, false, false, true, false, false, true, true, false, false, true, false, false, false, true, false, true, false, true, true, true, false, false, true, true, true, false, false, false, true, true, false, true, true, false, false, false, true, false, false, true, false, true, true, true, false, false, true, false, true, false, false, false, true, false, true, true, true, true, true, true, false, false, false, true, false, false, false, true, true, false, false, false, true, true, true, false, false, true, true, false, false, false, true, false, false, true, true, true, true, true, true, true, true, true, false, false, true, true, true, true, true, true, false, false, true, false, true, false, true, true, true, false, false, false, false, false, false, false, false, false, true, true, true, false, false, false, false, false, true, false, true, true, true, false, false, true, false, true, false, false, true, true, false, true, true, false, true, false, true, false, true, false, false, false, false, false, false, false, true, false, true, true, false, false, false, false, false, false, false, false, true, true, false, true, false, true, false, false, true, false, false, false, false, false, true, false, true, true, false, true, false, false, false, false, false, false, false, true, true, false, false, true, true, true, false, false, true, false, true, true, true, true, false, false, false, true, false, false, false, true, false, true, false, true, true, false, false, false, true, true, false, false, false, true, true, true, true, true, true, false, false, false, false, true, false, false, false, true, true, true, true, false, false, true, false, true, false, false, true, true, true, false, false, true, false, true, false, false, false, false, false, false, false, false, true, false, true, false]
+    steinerPointStatus=[(210, 637), (249, 729), (651, 781), (181, 521), (200, 847), (511, 609), (434, 383), (344, 694), (320, 627), (222, 758), (313, 768), (320, 697), (99, 528), (635, 781), (94, 725), (433, 959), (167, 938), (406, 939), (688, 638), (231, 592), (381, 817), (270, 363), (753, 513), (628, 632), (669, 515), (166, 548), (373, 627), (376, 368), (663, 503), (663, 472), (737, 510), (192, 376), (466, 700), (807, 455), (413, 959), (543, 576), (776, 596), (201, 366), (143, 975), (753, 556), (177, 920), (812, 475), (789, 419), (809, 621), (180, 531), (91, 598), (688, 603), (270, 406), (478, 640), (737, 469), (446, 516), (173, 711), (365, 910), (300, 364), (480, 609), (485, 902), (445, 959), (67, 598), (94, 723), (91, 565)]
+    numOfTerminal=218, numOfSteinerPoint=60, length=6152
+    degreeOfSteiner=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 3, 3, 3, 3, 3, 3]

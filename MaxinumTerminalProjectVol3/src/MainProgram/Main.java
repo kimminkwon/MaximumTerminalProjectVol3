@@ -23,10 +23,6 @@ public class Main {
 		ConstOfGA.setSIZEOFPOPULATION(sizeOfPopulation);
 		int numOfCycle = input.nextInt();
 		ConstOfGA.setNUMOFCYCLE(numOfCycle);
-		double probOfPart2 = input.nextDouble();
-		ConstOfGA.setPROBOFSWITCHCONDITION(probOfPart2);
-		double alpha = input.nextDouble(); double beta = input.nextDouble(); double gamma = input.nextDouble();
-		double alpha2 = input.nextDouble(); double beta2 = input.nextDouble(); double gamma2 = input.nextDouble();
 
 		InputDataProcess idp = InputDataProcess.getInputDataProcess();
 
@@ -63,8 +59,6 @@ public class Main {
 			
 			// 필요한 변수 선언
 			boolean isPart2 = false;
-			ConstOfGA.setFitnessPart1(alpha, beta, gamma);
-			ConstOfGA.setFitnessPart2(alpha2, beta2, gamma2);
 			
 			// 하난 그리드 생성			
 			idp.makeHananGrid();
@@ -196,8 +190,6 @@ public class Main {
 				numOfGeneration++;
 			}
 			
-			ConstOfGA.setFitnessPart1(alpha, beta, gamma);
-			ConstOfGA.setFitnessPart2(alpha2, beta2, gamma2);
 			ConstOfGA.initValues();
 
 			long endTime = System.currentTimeMillis();
@@ -222,8 +214,6 @@ public class Main {
 			}
 			System.out.println();
 		}
-		ConstOfGA.setFitnessPart1(alpha, beta, gamma);
-		ConstOfGA.setFitnessPart2(alpha2, beta2, gamma2);
 		
 		PrintFinalResult p = new PrintFinalResult();
 		try {

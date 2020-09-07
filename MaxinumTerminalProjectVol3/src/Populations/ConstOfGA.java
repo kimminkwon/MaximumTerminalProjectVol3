@@ -22,12 +22,12 @@ public class ConstOfGA {
 	public static double GIVENLENGTHVALUE = 0.5;
 	public static double SCALROFIGP = 1.0;
 	
-	public static double ALPHA = 0.2;
-	public static double BETA = 0.7;
-	public static double GAMMA = 0.1;
-	public static double ALPHA_PART2 = 0.2;
-	public static double BETA_PART2 = 0.7;
-	public static double GAMMA_PART2 = 0.1;
+	public static double ALPHA = 0.16;
+	public static double BETA = 0.64;
+	public static double GAMMA = 0.2;
+	public static double ALPHA_PART2 = 0.1;
+	public static double BETA_PART2 = 0.4;
+	public static double GAMMA_PART2 = 0.5;
 	
 	public static double MUTATIONPORB_TERMINAL = 0.05;
 	public static double MUTATIONPORB_STEINER = 0.05;
@@ -39,6 +39,9 @@ public class ConstOfGA {
 	
 	
 	public static void initValues() {
+		ALPHA = 0.16;
+		BETA = 0.64;
+		GAMMA = 0.2;
 		PROBOFSWITCHNEWSTEINERMAKE = 0.5;
 		PROBSTEINERDELETE = 0.1;
 		PROBSTEINERADD = 0.5;
