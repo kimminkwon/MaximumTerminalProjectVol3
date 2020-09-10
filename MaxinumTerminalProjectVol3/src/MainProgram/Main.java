@@ -143,6 +143,7 @@ public class Main {
 					calFitness = new CalFitness(childIndividualArr[i], givenLength);
 					childFitnessArr[i] = calFitness.calFitness();
 				}
+				
 
 				// GA5. Local Search: Steiner, Terminal
 				LocalSearch_Steiner localSearch_Steiner;
@@ -159,7 +160,8 @@ public class Main {
 
 				ChildIndividuals childIndividuals = new ChildIndividuals(childIndividualArr[0], childIndividualArr[1],
 						childIndividualArr[2], childIndividualArr[3], childFitnessArr);
-
+				
+				
 				// GA6. Replacement
 				Replacement replacement = new Replacement(population, parentIndividuals, childIndividuals);
 				replacement.replacement();

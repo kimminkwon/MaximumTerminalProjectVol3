@@ -59,6 +59,7 @@ public class PrintFinalResult {
 			System.out.println("- Best Individual Terminal Value: " + bestIndividuals[c].getNumOfTerminal());
 			System.out.println("- Best Individual Steiner Value:" + bestIndividuals[c].getNumOfSteinerPoint());
 			System.out.println("- Best Individual Length: " + bestIndividuals[c].getLength());
+			System.out.println("- QBI: " + ((double)bestIndividuals[c].getNumOfTerminal() / (double)ConstOfGA.CONTROLGROUPVALUE) * 100.0f);
 			System.out.println();
 		}
 		
@@ -69,7 +70,7 @@ public class PrintFinalResult {
 		}
 		BufferedOutputStream bs = null;
 		try {
-			bs = new BufferedOutputStream(new FileOutputStream(ConstOfGA.TOPIC + "_result_" + ConstOfGA.INPUTNAME + ".txt"));
+			bs = new BufferedOutputStream(new FileOutputStream(ConstOfGA.TOPIC + "(Memetic)_result_" + ConstOfGA.INPUTNAME + ".txt"));
 			String s = "\n================================= " + ConstOfGA.TOPIC + " =================================\n";
 			bs.write(s.getBytes());
 			s = "- INPUT FILE NAME: " + ConstOfGA.INPUTNAME + "\n";
@@ -116,9 +117,9 @@ public class PrintFinalResult {
 				bs.write(s.getBytes());
 				s = "- Best Individual Terminal Value: " + bestIndividuals[c].getNumOfTerminal() + "\n";
 				bs.write(s.getBytes());
-				s = "- Best Individual Steiner Value:" + bestIndividuals[c].getNumOfSteinerPoint() +"\n";
+				s = "- Best Individual Steiner Value: " + bestIndividuals[c].getNumOfSteinerPoint() +"\n";
 				bs.write(s.getBytes());
-				s = "- Best Individual Length:" + bestIndividuals[c].getLength() +"\n";
+				s = "- Best Individual Length: " + bestIndividuals[c].getLength() +"\n";
 				bs.write(s.getBytes());
 			}
 
@@ -128,6 +129,25 @@ public class PrintFinalResult {
 				s = bestIndividuals[c].toString();
 				bs.write(s.getBytes());
 				s = "\n";
+				bs.write(s.getBytes());
+			}
+			
+			s = "\n================================= InData =================================\n";
+			bs.write(s.getBytes());
+			s = ConstOfGA.CONTROLGROUPVALUE + "\n";
+			bs.write(s.getBytes());
+			for(int c = 0; c < ConstOfGA.NUMOFCYCLE; c++) {
+				s = numOfGenerations[c] + "\n";
+				bs.write(s.getBytes());
+				s = time[c] + "\n";
+				bs.write(s.getBytes());
+				s = bestIndividuals[c].getNumOfTerminal() + "\n";
+				bs.write(s.getBytes());
+				s = bestIndividuals[c].getNumOfSteinerPoint() +"\n";
+				bs.write(s.getBytes());
+				s = bestIndividuals[c].getLength() +"\n";
+				bs.write(s.getBytes());
+				s = ((double)bestIndividuals[c].getNumOfTerminal() / (double)ConstOfGA.CONTROLGROUPVALUE) * 100.0f + "\n";
 				bs.write(s.getBytes());
 			}
 		} 
