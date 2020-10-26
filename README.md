@@ -17,6 +17,6 @@ Using Memetic Genetic Algorithm including local search.
 * vol3: using terminal set considering horizental or vertical edge  
 
 <div>
-  <img width="100" height="200" src="https://user-images.githubusercontent.com/51231789/97127815-001ab300-177e-11eb-85e3-328ce16b6749.png" />
+  <img width="500" height="1000" src="https://user-images.githubusercontent.com/51231789/97127815-001ab300-177e-11eb-85e3-328ce16b6749.png" />
 </div>
 
