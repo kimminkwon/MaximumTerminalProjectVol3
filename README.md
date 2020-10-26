@@ -19,5 +19,8 @@ Using Memetic Genetic Algorithm including local search.
 * vol2: using terminal set considering cluster distribution
 * vol3: using terminal set considering horizental or vertical edge  
 
+### Class Diagram
 
-
+<div>
+  <img width="600" height="600" src="https://user-images.githubusercontent.com/51231789/97127987-81724580-177e-11eb-8ae9-e01f925cec71.jpg" />
+</div>
