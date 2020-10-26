@@ -10,7 +10,7 @@ The subgraph is required to have the maximum number of nodes while the length is
 ### Algorithm
 Using Memetic Genetic Algorithm including local search.  
 <div>
-  <img width="300" height="500" src="https://user-images.githubusercontent.com/51231789/97127815-001ab300-177e-11eb-85e3-328ce16b6749.png" />
+  <img width="300" height="400" src="https://user-images.githubusercontent.com/51231789/97127815-001ab300-177e-11eb-85e3-328ce16b6749.png" />
 </div>  
 
 ### Paper
