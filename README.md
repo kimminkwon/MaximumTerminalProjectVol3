@@ -14,4 +14,7 @@ Using Memetic Genetic Algorithm including local search.
 * vol1: using terminal set considering uniform distribution  
 *doi: https://doi.org/10.6109/jicce.2019.17.4.1*
 * vol2: using terminal set considering cluster distribution
-* vol3: using terminal set considering horizental or vertical edge
+* vol3: using terminal set considering horizental or vertical edge  
+
+![Genetic ALgo](https://user-images.githubusercontent.com/51231789/97127815-001ab300-177e-11eb-85e3-328ce16b6749.png)
+
