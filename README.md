@@ -22,5 +22,5 @@ Using Memetic Genetic Algorithm including local search.
 ### Class Diagram
 
 <div>
-  <img width="1500" height="1000" src="https://user-images.githubusercontent.com/51231789/97127987-81724580-177e-11eb-8ae9-e01f925cec71.jpg" />
+  <img width="1500" height="800" src="https://user-images.githubusercontent.com/51231789/97127987-81724580-177e-11eb-8ae9-e01f925cec71.jpg" />
 </div>
