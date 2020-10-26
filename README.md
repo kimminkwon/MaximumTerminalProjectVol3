@@ -8,7 +8,10 @@ This paper proposes a solution to the problem of finding a subgraph for a given 
 The subgraph is required to have the maximum number of nodes while the length is limited and is not sufficient to interconnect all the given terminals.
 
 ### Algorithm
-Using Memetic Genetic Algorithm including local search.
+Using Memetic Genetic Algorithm including local search.  
+<div>
+  <img width="300" height="500" src="https://user-images.githubusercontent.com/51231789/97127815-001ab300-177e-11eb-85e3-328ce16b6749.png" />
+</div>  
 
 ### Paper
 * vol1: using terminal set considering uniform distribution  
@@ -16,7 +19,5 @@ Using Memetic Genetic Algorithm including local search.
 * vol2: using terminal set considering cluster distribution
 * vol3: using terminal set considering horizental or vertical edge  
 
-<div>
-  <img width="500" height="1000" src="https://user-images.githubusercontent.com/51231789/97127815-001ab300-177e-11eb-85e3-328ce16b6749.png" />
-</div>
+
 
